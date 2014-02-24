@@ -18,7 +18,7 @@ def index(request):
 def login(request):
     context = RequestContext(request)
     context_dict = {}
-    return render_to_response('gofish/logn.html', context_dict, context)
+    return render_to_response('gofish/login.html', context_dict, context)
     
 def register(request):
     context = RequestContext(request)
