@@ -269,7 +269,7 @@ def add_game(lakein,weatherin,playerin):
     return g
 
 def add_containfish(fishin,gamein,amountin):
-    cf = Containfish.objects.get_or_create(fish=fishin,game=gamein,amount=amountin)
+    cf = CaughtFish.objects.get_or_create(fish=fishin,game=gamein,amount=amountin)
     return cf
 
 def add_bait(namein,qualityin,pricein):
@@ -289,12 +289,12 @@ def add_trophy(namein,fishin,playerin=None):
     return t
 
 def add_containbait(playerin,baitin,amountin):
-    cb = Containbait.objects.get_or_create(player=playerin,bait=baitin,amount=amountin)
+    cb = OwnsBait.objects.get_or_create(player=playerin,bait=baitin,amount=amountin)
     return cb
 
 
 if __name__ == '__main__':
     print "Starting Gofish population script..."
     os.environ.setdefault('DJANGO_SETTINGS_MODULE','go_fish_project.settings')
-    from gofish.models import Fish, Game, Containfish, Bait, Boat, Player, Trophy, Containbait
+    from gofish.models import Fish, Game, CaughtFish, Bait, Boat, Player, Trophy, OwnsBait
     populate()

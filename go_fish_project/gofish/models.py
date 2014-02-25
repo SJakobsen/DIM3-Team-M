@@ -32,7 +32,7 @@ class Player(models.Model):
     ranking = models.IntegerField()
     money = models.DecimalField(max_digits=12,decimal_places=2)
     boat = models.ForeignKey(Boat,blank=True,null=True)
-    bait = models.ManyToManyField(Bait, through = 'Containbait')
+    bait = models.ManyToManyField(Bait, through = 'OwnsBait')
     
     def __unicode__(self):
         return "name: "+self.name+" ranking: "+str(self.ranking)+" money: "+str(self.money)
@@ -56,7 +56,7 @@ class Trophy(models.Model):
 class Game(models.Model):
     lake = models.CharField(max_length=30)
     weather = models.CharField(max_length=30)
-    fish = models.ManyToManyField(Fish, through = 'Containfish')
+    fish = models.ManyToManyField(Fish, through = 'CaughtFish')
     player = models.OneToOneField(Player)
 
     def __unicode__(self):
