@@ -50,7 +50,7 @@ class Player(models.Model):
     bait = models.ManyToManyField(Bait)
 
     def __unicode__(self):
-        return "name: "+self.name+" ranking: "+str(self.ranking)+" money: "+str(self.money)+" game: "+str(self.game)
+        return "name: "+self.name+" ranking: "+str(self.ranking)+" money: "+str(self.money)
 
 class Trophy(models.Model):
     name = models.CharField(max_length=30)
