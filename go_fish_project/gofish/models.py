@@ -37,7 +37,7 @@ class Player(models.Model):
     def __unicode__(self):
         return "name: "+self.name+" ranking: "+str(self.ranking)+" money: "+str(self.money)
 
-class Containbait(models.Model):
+class OwnsBait(models.Model):
     player = models.ForeignKey(Player)
     bait = models.ForeignKey(Bait)
     amount = models.IntegerField()
@@ -62,7 +62,7 @@ class Game(models.Model):
     def __unicode__(self):
         return "lake: "+self.lake+" weather: "+self.weather+" played by username: "+self.player.username
 
-class Containfish(models.Model):
+class CaughtFish(models.Model):
     fish = models.ForeignKey(Fish)
     game = models.ForeignKey(Game)
     amount = models.IntegerField()
