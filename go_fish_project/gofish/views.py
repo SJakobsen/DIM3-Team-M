@@ -1,5 +1,7 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.http import HttpResponse
+import json
 
 def index(request):
     # Request the context of the request.
@@ -29,3 +31,47 @@ def game(request):
     context = RequestContext(request)
     context_dict = {}
     return render_to_response('gofish/game.html', context_dict, context)
+
+def shop(request):
+    context = RequestContext(request)
+    context_dict = {}
+    return render_to_response('gofish/shop.html', context_dict, context)
+
+def rankings(request):
+    context = RequestContext(request)
+    context_dict = {}
+    return render_to_response('gofish/rankings.html', context_dict, context)
+
+def trophies(request):
+    context = RequestContext(request)
+    context_dict = {}
+    return render_to_response('gofish/trophies.html', context_dict, context)
+
+### API calls, return json ###
+def newgame(request):
+    res = {'lake': {}, 'weather': {}, 'currentTime': 6, 'money': 100}
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def move(request):
+    res = {'currentTime': 10}
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def fish(request):
+    res = {'catch': [], 'currentTime': 11}
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def changebait(request):
+    res = {}
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def buybait(request):
+    res = {'money': 97}
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def buyboat(request):
+    res = {'money': 90}
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def finish(request):
+    res = {'money': 110, 'trophies': []}
+    return HttpResponse(json.dumps(res), content_type="application/json")
