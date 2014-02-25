@@ -13,6 +13,7 @@ class Game(models.Model):
     lake = models.CharField(max_length=30)
     weather = models.CharField(max_length=30)
     fish = models.ManyToManyField(Fish, through = 'Containfish')
+    player = models.OneToOneField(Player)
 
     def __unicode__(self):
         return "lake: "+self.lake+" weather: "+self.weather
@@ -45,7 +46,6 @@ class Player(models.Model):
     name = models.CharField(max_length=12,unique=True)
     ranking = models.IntegerField()
     money = models.DecimalField(max_digits=12,decimal_places=2)
-    game = models.OneToOneField(Game)
     boat = models.ForeignKey(Boat)
     bait = models.ManyToManyField(Bait)
 
