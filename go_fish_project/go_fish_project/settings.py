@@ -8,6 +8,8 @@ STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'gofish.db')
 
+LOGIN_URL = '/gofish/login/'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

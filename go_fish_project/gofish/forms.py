@@ -16,4 +16,4 @@ class PlayerForm(forms.ModelForm):
     
     class Meta:
         model = Player
-        fields = ()
+        fields = ('ranking', 'money')

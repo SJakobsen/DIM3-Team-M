@@ -183,18 +183,18 @@ def populate():
     add_boat('kiel_nc_105',300,20000)
     
     #populate_player---------------------------------------------------------
-    a = add_player('a1234','1234a','a',0,100)
-    b = add_player('b1234','1234b','b',0,100)
-    c = add_player('c1234','1234c','c',0,100)
-    d = add_player('d1234','1234d','d',0,100)
-    e = add_player('e1234','1234e','e',0,100)
+#    a = add_player(0,100)
+#    b = add_player(0,100)
+#    c = add_player(0,100)
+#    d = add_player(0,100)
+#    e = add_player(0,100)
 
     #populate_game---------------------------------------------------------
-    add_game('pond','sunny',a)
-    add_game('island','cloudy',b)
-    add_game('waterfall','hurricane',c)
-    add_game('river','thunderstorm',d)
-    add_game('ocean','snow',e)
+#    add_game('pond','sunny',a)
+#    add_game('island','cloudy',b)
+#    add_game('waterfall','hurricane',c)
+#    add_game('river','thunderstorm',d)
+#    add_game('ocean','snow',e)
 
     #populate_bait---------------------------------------------------------
     add_bait('artificial_bait',10,1)
@@ -268,7 +268,7 @@ def add_game(lakein,weatherin,playerin):
     g = Game.objects.get_or_create(lake=lakein,weather=weatherin,player=playerin)
     return g
 
-def add_containfish(fishin,gamein,amountin):
+def add_caughtfish(fishin,gamein,amountin):
     cf = CaughtFish.objects.get_or_create(fish=fishin,game=gamein,amount=amountin)
     return cf
 
@@ -280,15 +280,16 @@ def add_boat(namein,speedin,pricein):
     b = Boat.objects.get_or_create(name=namein,speed=speedin,price=pricein)[0]
     return b
 
-def add_player(usernamein,passwordin,namein,rankingin,moneyin):
-    p = Player.objects.get_or_create(username=usernamein,password=passwordin,name=namein,ranking=rankingin,money=moneyin)[0]
+
+def add_player(rankingin,moneyin):
+    p = Player.objects.get_or_create(ranking=rankingin,money=moneyin)[0]
     return p
 
 def add_trophy(namein,fishin,playerin=None):
     t = Trophy.objects.get_or_create(name=namein,fish=fishin,player=playerin)
     return t
 
-def add_containbait(playerin,baitin,amountin):
+def add_ownsbait(playerin,baitin,amountin):
     cb = OwnsBait.objects.get_or_create(player=playerin,bait=baitin,amount=amountin)
     return cb
 

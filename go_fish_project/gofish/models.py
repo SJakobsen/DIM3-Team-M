@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Fish(models.Model):
@@ -26,16 +27,15 @@ class Boat(models.Model):
         return "name: "+self.name+" speed: "+str(self.speed)+" price: "+str(self.price)
 
 class Player(models.Model):
-    username = models.CharField(max_length=12,unique=True)
-    password = models.CharField(max_length=12,unique=True)
-    name = models.CharField(max_length=12,unique=True)
+    user = models.OneToOneField(User)
+    
     ranking = models.IntegerField()
     money = models.DecimalField(max_digits=12,decimal_places=2)
     boat = models.ForeignKey(Boat,blank=True,null=True)
     bait = models.ManyToManyField(Bait, through = 'OwnsBait')
     
     def __unicode__(self):
-        return "name: "+self.name+" ranking: "+str(self.ranking)+" money: "+str(self.money)
+        return "name: "+self.user.username+" ranking: "+str(self.ranking)+" money: "+str(self.money)
 
 class OwnsBait(models.Model):
     player = models.ForeignKey(Player)

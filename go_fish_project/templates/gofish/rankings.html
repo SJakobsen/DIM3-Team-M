@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-{% load static %}
-
 <html>
 <head>
 	<title>Go!Fish</title>
@@ -12,6 +10,17 @@
 
     <body>
         <h1>There be rankings.</h1>
+		
+		{% if top10players %}
+			<ul>
+				{% for player in top10players %}
+				<li>{{ player.user.username }}: {{ player.money }} monies</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			Well, this is awkward... There appear to be no players.
+		{% endif %}
+		
     </body>
 
 </html>

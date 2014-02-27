@@ -12,6 +12,23 @@
 
     <body>
         <h1>There be dragons.</h1>
+		
+		{% if boats %}
+			<ul>
+				{% for boat in boats %}
+				<li>{{ boat.name }}: {{ boat.price }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		
+		{% if bait %}
+			<ul>
+				{% for b in bait %}
+				<li>{{ b.name }}: {{ b.price }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		
     </body>
 
 </html>
