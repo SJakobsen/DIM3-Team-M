@@ -14,13 +14,13 @@
   			<h1>Go!Fish</h1>
   			hello {{ user.username }}!<br />
 			<a href="/gofish/game/">Game</a><br />
+			<a href="/gofish/rankings/">Rankings</a><br />
 		{% else %}
 			<a href="/gofish/login/">Login</a> <a href="/gofish/register/">Register</a><br />
   			<h1>Go!Fish</h1>
-  			hello world!<br />
-			<p>
-				Wanna get playing? <a href="/gofish/login/">Login</a> or <a href="/gofish/register/">register</a>.
-			</p>
+			Wanna get playing? <a href="/gofish/login/">Login</a> or <a href="/gofish/register/">register</a>.<br />
+			<br />
+			See our best players: <a href="/gofish/rankings/">Rankings</a>
 		{% endif %}
 		<img src="{% static "bruce.jpg" %}" alt="Picture of Bruce da shark" />
     </body>
