@@ -13,11 +13,11 @@
 		<h2>Top 10 Players</h2>
 		
 		{% if top10players %}
-			<ul>
+			<ol>
 				{% for player in top10players %}
 				<li>{{ player.user.username }}: {{ player.money }} monies</li>
 				{% endfor %}
-			</ul>
+			</ol>
 		{% else %}
 			Well, this is awkward... There appear to be no players.
 		{% endif %}
