@@ -1,39 +1,33 @@
-<!DOCTYPE html>
+{% extends 'gofish/base.html' %}
 
-<html>
+{% block title %}Register{% endblock %}
 
-    <head>
-        <title>Go!Fish</title>
-    </head>
+{% block body_block %}
+	{% if registered %}
+		<strong>Thank you for registering!</strong>
+		<a href="/gofish/">Return to the homepage.</a><br />
+	{% else %}
+	<h1>So... You wanna start fishin' do ya?</h1>
+	I guess we could let you.<br />
 
-    <body>
-		{% if registered %}
-			<strong>Thank you for registering!</strong>
-			<a href="/gofish/">Return to the homepage.</a><br />
-		{% else %}
-        <h1>So... You wanna start fishin' do ya?</h1>
-        I guess we could let you.<br />
+	<form id="user_form" method="post" action="/gofish/register/" enctype="multipart/form-data">
 
-		<form id="user_form" method="post" action="/gofish/register/" enctype="multipart/form-data">
+		{% csrf_token %}
 
-			{% csrf_token %}
+		<!-- Display each form. The as_p method wraps each element in a paragraph
+	         (<p>) element. This ensures each element appears on a new line,
+	         making everything look neater. -->
+		{{ user_form.as_p }}
+		{{ player_form.as_p }}
+	
+		<!--
+		{% for hidden in player_form.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+			-->
 
-			<!-- Display each form. The as_p method wraps each element in a paragraph
-		         (<p>) element. This ensures each element appears on a new line,
-		         making everything look neater. -->
-			{{ user_form.as_p }}
-			{{ player_form.as_p }}
-			
-			<!--
-			{% for hidden in player_form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
-				-->
-
-		    <!-- Provide a button to click to submit the form. -->
-			<input type="submit" name="submit" value="Register" />
-		</form>
-		{% endif %}	
-    </body>
-
-</html>
+	    <!-- Provide a button to click to submit the form. -->
+		<input type="submit" name="submit" value="Register" />
+	</form>
+	{% endif %}	
+{% endblock %}

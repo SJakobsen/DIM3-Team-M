@@ -1,24 +1,18 @@
-<!DOCTYPE html>
+{% extends 'gofish/base.html' %}
 
-<html>
+{% block title %}Login{% endblock %}
 
-    <head>
-        <title>Go!Fish</title>
-    </head>
+{% block body_block %}
+<h1>So... You wanna keep fishin' do ya?</h1>
+I guess we could let you.<br />
 
-    <body>
-        <h1>So... You wanna keep fishin' do ya?</h1>
-        I guess we could let you.<br />
-		
-		<form id="login_form" method="post" action="/gofish/login/">
-			{% csrf_token %}
-		    Username: <input type="text" name="username" value="" size="50" />
-		    <br />
-		    Password: <input type="password" name="password" value="" size="50" />
-		    <br />
-			
-		    <input type="submit" value="submit" />
-		</form>
-    </body>
-
-</html>
+<form id="login_form" method="post" action="/gofish/login/">
+	{% csrf_token %}
+    Username: <input type="text" name="username" value="" size="50" />
+    <br />
+    Password: <input type="password" name="password" value="" size="50" />
+    <br />
+	
+    <input type="submit" value="submit" />
+</form>
+{% endblock %}

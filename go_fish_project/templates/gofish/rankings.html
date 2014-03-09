@@ -1,27 +1,18 @@
-<!DOCTYPE html>
+{% extends 'gofish/base.html' %}
 
-<html>
-<head>
-	<title>Go!Fish</title>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-</head>
+{% block title %}Rankings{% endblock %}
 
-    <body>
-        <h1>There be rankings.</h1>
-		<h2>Top 10 Players</h2>
-		
-		{% if top10players %}
-			<ol>
-				{% for player in top10players %}
-				<li>{{ player.user.username }}: {{ player.money }} monies</li>
-				{% endfor %}
-			</ol>
-		{% else %}
-			Well, this is awkward... There appear to be no players.
-		{% endif %}
-		
-    </body>
+{% block body_block %}
+	<h1>There be rankings.</h1>
+	<h2>Top 10 Players</h2>
 
-</html>
+	{% if top10players %}
+		<ol>
+			{% for player in top10players %}
+			<li>{{ player.user.username }}: {{ player.money }} monies</li>
+			{% endfor %}
+		</ol>
+	{% else %}
+		Well, this is awkward... There appear to be no players.
+	{% endif %}
+{% endblock %}

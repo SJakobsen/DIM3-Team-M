@@ -1,17 +1,10 @@
-<!DOCTYPE html>
+{% extends 'gofish/base.html' %}
 
-<html>
+{% block title %}Game{% endblock %}
 
-    <head>
-        <title>Go!Fish</title>
-    </head>
-
-    <body>
-
-        <a href="/gofish/">Index</a> <a href="/gofish/logout/">Logout</a><br />
-		
-        <h1>Time to fish</h1>
-        Suit up<br />
+{% block body_block %}
+    <h1>Time to fish</h1>
+    Suit up<br />
 
 	<h2>Ingame screens separated to distinct pages:</h2>
 	<p>
@@ -34,6 +27,4 @@
 			<li><a href="/gofish/api/finish/" />Finish the game</a></li>
 		</ul>
 	</p>
-    </body>
-
-</html>
+{% endblock %}
