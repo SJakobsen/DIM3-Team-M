@@ -13,13 +13,14 @@ newgameCallback = (data) ->
 	world.addBoat(new Boat())
 	world.drawScene()
 
-moveCallback = (data) =>
+moveCallback = (data) ->
 	status = data.status
 	if status == "ok"
 		world.boat.applyNextCoordinates()
 		world.updateScene()
 
-fishCallback = () ->
+fishCallback = (data) ->
+	showFishingResults data
 changebateCallback = () ->
 buybaitCallback = () ->
 buyboatCallback = () ->
