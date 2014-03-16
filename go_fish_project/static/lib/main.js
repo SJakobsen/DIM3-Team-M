@@ -9,7 +9,7 @@ getTimeString = function(time) {
   return time;
 };
 
-origin = "http://127.0.0.1:8000/gofish/api/";
+origin = location.origin + "/gofish/api/";
 
 newgameCallback = function(data) {
   var lake, lakeArray;
