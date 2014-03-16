@@ -227,7 +227,7 @@ def buy_bait(request, name):
             
     except Bait.DoesNotExist:
         # We get here if we didn't find the specified Boat.
-        # Don't do anything - the template displays the "no boat" message for us.
+        # Don't do anything - the template displays the "no bait" message for us.
         pass
         
     return shop_return(request, failed)
@@ -257,14 +257,6 @@ def fish(request):
 
 def changebait(request):
     res = {}
-    return HttpResponse(json.dumps(res), content_type="application/json")
-
-def buybait(request):
-    res = {'money': 97}
-    return HttpResponse(json.dumps(res), content_type="application/json")
-
-def buyboat(request):
-    res = {'money': 90}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def finish(request):

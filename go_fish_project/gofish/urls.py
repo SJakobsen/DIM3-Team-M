@@ -32,10 +32,6 @@ urlpatterns = patterns('',
     url(r'^api/fish/$', views.fish, name='fish'),
     # change the bait, choosing from the collection we have
     url(r'^api/change/bait/$', views.changebait, name='changebait'),
-    # buy the bait, to add in our collection
-    url(r'^api/buy/bait/$', views.buybait, name='buybait'),
-    # update the boat
-    url(r'^api/buy/boat/$', views.buyboat, name='buyboat'),
     # finish the game, sell the fish, get the trophies
     url(r'^api/finish/$', views.finish, name='finish')
 )
