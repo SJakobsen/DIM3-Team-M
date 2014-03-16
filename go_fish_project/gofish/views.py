@@ -163,10 +163,14 @@ def move(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def fish(request):
+    res = { 'fish': [], 'currentTime': 12.5 }
+
     bait = Bait.objects.all()[3]
-    res = doFishing(3, generateWeather()[0], 8, bait, 1)
-    if res:
-        res['fish'] = res['fish'].name
+    f = doFishing(3, generateWeather()[0], 8, bait, 1)
+    if f:
+        f['fish'] = f['fish'].name
+        res['fish'].append(f)
+
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def changebait(request):
