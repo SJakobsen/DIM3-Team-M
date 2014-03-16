@@ -4,19 +4,35 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Fish(models.Model):
     name = models.CharField(max_length=64)
-    price = models.DecimalField(max_digits=9, decimal_places=2)
-    size = models.DecimalField(max_digits=6, decimal_places=4)
+    base_price = models.IntegerField()
+    base_chance = models.IntegerField()
+
+    # fish size vars, used to determine the actual size
+    size_mean = models.DecimalField(max_digits=8,decimal_places=2)
+    size_sd = models.DecimalField(max_digits=8,decimal_places=2)
+    weight_mean = models.DecimalField(max_digits=8,decimal_places=2)
+    weight_sd = models.DecimalField(max_digits=8,decimal_places=2)
+
+    # chance to cache parameters enhancers
+    # that can go into negative
+    p_depth = models.IntegerField()
+    p_bsize = models.IntegerField()
+    # that are always positive
+    p_clouds = models.IntegerField()
+    p_rain = models.IntegerField()
+    p_wind = models.IntegerField()
 
     def __unicode__(self):
-        return "name: "+self.name+" price: "+str(self.price)+" size: "+str(self.size)
+        return "name: "+self.name+", base_price: "+str(self.base_price)+", base_chance: "+str(self.base_chance)+", and more stuff"
 
 class Bait(models.Model):
     name = models.CharField(max_length=30)
-    quality = models.IntegerField()
-    price = models.DecimalField(max_digits=12,decimal_places=2)
+    colour = models.IntegerField() # mate or bright
+    size = models.IntegerField() # 0-4
+    price = models.IntegerField()
     
     def __unicode__(self):
-        return "name: "+self.name+" quality: "+str(self.quality)+" price: "+str(self.price)
+        return "name: "+self.name+" colour: "+str(self.colour)+" size: " + str(self.size) + " price: "+str(self.price)
 
 class Boat(models.Model):
     name = models.CharField(max_length=30)
@@ -66,6 +82,7 @@ class CaughtFish(models.Model):
     fish = models.ForeignKey(Fish)
     game = models.ForeignKey(Game)
     amount = models.IntegerField()
+    size = models.IntegerField()
 
     def __unicode__(self):
         return "fish: "+str(self.fish)+" game: "+str(self.game)+" amount: "+str(self.amount)
