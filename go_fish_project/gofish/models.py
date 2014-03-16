@@ -69,10 +69,13 @@ class Trophy(models.Model):
         return "name: "+self.name+" for fish: "+str(self.fish)+" player: "+str(self.player)
 
 class Game(models.Model):
-    lake = models.CharField(max_length=30)
-    weather = models.CharField(max_length=30)
+    lake = models.CharField(max_length=3000)
+    weather = models.CharField(max_length=300)
     fish = models.ManyToManyField(Fish, through = 'CaughtFish')
     player = models.OneToOneField(Player)
+    time = models.DecimalField(max_digits=8,decimal_places=2)
+    x = models.IntegerField()
+    y = models.IntegerField()
 
     def __unicode__(self):
         return "lake: "+self.lake+" weather: "+self.weather+" played by username: "+self.player.username
