@@ -1,9 +1,3 @@
-currentX = 0;
-currentY = 0;
-
-nextX = 0;
-nextY = 0;
-
 newGame = () ->
 	sendRequest {type: newgameRequest}
 
