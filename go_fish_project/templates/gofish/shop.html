@@ -9,17 +9,37 @@
 	{% if boats %}
 		<ul>
 			{% for boat in boats %}
+			{% if boat.cost <= player.boat.cost %}
+			<li>{{ boat.name }}: {{ boat.price }} SOLD</li>
+			{% else %}
 			<li>{{ boat.name }}: {{ boat.price }}</li>
+			{% endif %}
 			{% endfor %}
 		</ul>
 	{% endif %}
-
+		
 	{% if bait %}
 		<ul>
 			{% for b in bait %}
-			<li>{{ b.name }}: {{ b.price }}</li>
+			<li>{{ b.name }}: {{ b.price }} </li>
 			{% endfor %}
 		</ul>
+		
+	{% else %}
+		<p> There seems to have been a problem with the bait shipment, try shopping again later.</p>
+	{% endif %}
+	
+	<hr>
+	
+	{% if owned_bait %}
+		<p> You own: </p>
+		<ul>
+			{% for owned in owned_bait %}
+			<li>{{ owned.bait.name }}: {{ owned.amount }}</li>
+			{% endfor %}
+		</ul>
+	{% else %}	
+		<p>You don't currently own anything.</p>
 	{% endif %}
 	</div>
 {% endblock %}
