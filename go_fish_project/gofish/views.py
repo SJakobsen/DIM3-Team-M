@@ -60,9 +60,19 @@ def register(request):
             user.set_password(user.password)
             user.save()
             
+            # initial bait for the player
+            bait = Bait.objects.get(name='Small_red_lure')
+
             player = player_form.save(commit=False)
             player.user = user
             player.save()
+
+            player.bait = bait
+            player.money = 500
+            player.save()
+
+            b = OwnsBait(player=player, bait=bait, amount=1)
+            b.save()
             
             registered = True
             

@@ -14,7 +14,7 @@ class UserForm(forms.ModelForm):
 
 class PlayerForm(forms.ModelForm):
     ranking = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    money = forms.IntegerField(widget=forms.HiddenInput(), initial=100)
+    money = forms.IntegerField(widget=forms.HiddenInput(), initial=500)
     
     class Meta:
         model = Player
