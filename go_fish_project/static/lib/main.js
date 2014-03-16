@@ -16,7 +16,7 @@ newgameCallback = function(data) {
   lakeArray = data.lake;
   lake = new Lake(lakeArray);
   world.addLake(lake);
-  world.addBoat(new Boat());
+  world.addBoat(new Boat(data.x, data.y));
   world.drawScene();
   return updateTime(data.currentTime);
 };
@@ -34,7 +34,10 @@ moveCallback = function(data) {
 
 fishCallback = function(data) {
   showFishingResults(data);
-  return updateTime(data.currentTime);
+  updateTime(data.currentTime);
+  if (data.end_of_game) {
+    return finish();
+  }
 };
 
 changebateCallback = function() {};
@@ -43,7 +46,10 @@ buybaitCallback = function() {};
 
 buyboatCallback = function() {};
 
-finishCallback = function() {};
+finishCallback = function(data) {
+  print(data);
+  return newGame();
+};
 
 newgameRequest = {
   address: "newgame/",
@@ -106,8 +112,6 @@ sendRequest = function(request) {
 Boat = (function() {
   var currentX, currentY, nextX, nextY;
 
-  function Boat() {}
-
   currentX = 0;
 
   currentY = 0;
@@ -115,6 +119,11 @@ Boat = (function() {
   nextX = 0;
 
   nextY = 0;
+
+  function Boat(x, y) {
+    currentX = x;
+    currentY = y;
+  }
 
   Boat.prototype.getCurrentX = function() {
     return currentX;
@@ -219,11 +228,11 @@ World = (function() {
   World.prototype.drawLake = function() {
     var depth, i, j, tileColor, _i, _ref, _results;
     _results = [];
-    for (i = _i = 0, _ref = World.worldWidth; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+    for (i = _i = 0, _ref = World.worldHeight; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
       _results.push((function() {
         var _j, _ref1, _results1;
         _results1 = [];
-        for (j = _j = 0, _ref1 = World.worldHeight; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
+        for (j = _j = 0, _ref1 = World.worldWidth; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; j = 0 <= _ref1 ? ++_j : --_j) {
           depth = this.worldArray[i][j];
           if (depth > 0) {
             tileColor = this.getTileColorByDepth(depth);

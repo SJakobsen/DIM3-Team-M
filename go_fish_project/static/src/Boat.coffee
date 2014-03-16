@@ -5,6 +5,10 @@ class Boat
     nextX = 0;
     nextY = 0;
 
+    constructor: (x, y) ->
+        currentX = x
+        currentY = y
+
     getCurrentX: () ->
         return currentX
 

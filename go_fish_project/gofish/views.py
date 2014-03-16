@@ -342,6 +342,7 @@ def changebait(request):
     res = {}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
+@csrf_exempt
 def finish(request):
     pl = Player.objects.get(user=request.user)
     game = Game.objects.get(player=pl)

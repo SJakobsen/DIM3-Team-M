@@ -32,8 +32,8 @@ class World
     drawDecorations: () ->
 
     drawLake: () ->
-        for i in [0...World.worldWidth]
-            for j in [0...World.worldHeight]
+        for i in [0...World.worldHeight]
+            for j in [0...World.worldWidth]
                 depth = @worldArray[i][j]
                 if depth > 0
                     tileColor = @getTileColorByDepth depth

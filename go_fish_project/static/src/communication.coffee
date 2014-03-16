@@ -5,7 +5,7 @@ newgameCallback = (data) ->
 	lakeArray = data.lake
 	lake = new Lake lakeArray
 	world.addLake(lake)
-	world.addBoat(new Boat())
+	world.addBoat(new Boat(data.x, data.y))
 	world.drawScene()
 
 	updateTime data.currentTime
@@ -22,11 +22,17 @@ moveCallback = (data) ->
 fishCallback = (data) ->
 	showFishingResults data
 	updateTime data.currentTime
+	if data.end_of_game
+		finish()
+
 	
 changebateCallback = () ->
 buybaitCallback = () ->
 buyboatCallback = () ->
-finishCallback = () ->
+finishCallback = (data) ->
+	print data
+	newGame()
+
 
 newgameRequest  = {address: "newgame/", callback: newgameCallback};
 moveRequest = {address: "move/", callback: moveCallback}
