@@ -239,7 +239,9 @@ def newgame(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
-def move(request, x, y):
+def move(request):
+    x = request.POST['x']
+    y = request.POST['y']
     res = { 'currentTime': 0, 'status': 'uncool' }
 
     current_player = Player.objects.get(user=request.user)
