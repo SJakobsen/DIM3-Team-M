@@ -3,16 +3,7 @@
 {% load static %}
 
 {% block body_block %}
-	{% if user.is_authenticated %}
-		<h1>Go!Fish</h1>
-		Hello {{ user.username }}!<br />
-		<a href="/gofish/game/">Game</a><br />
-		<a href="/gofish/rankings/">Rankings</a><br />
-	{% else %}
-		<h1>Go!Fish</h1>
-		Wanna get playing? <a href="/gofish/login/">Login</a> or <a href="/gofish/register/">register</a>.<br />
-		<br />
-		See our best players: <a href="/gofish/rankings/">Rankings</a>
-	{% endif %}
+	<div class="hero-unit">
 	<img src="{% static "bruce.jpg" %}" alt="Picture of Bruce da shark" />
+	</div>
 {% endblock %}
