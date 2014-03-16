@@ -2,8 +2,7 @@ class Lake
 	lakeArray = []
 
 	constructor: (lake) ->
-		if lake.lakeArray
-			lakeArray = lake.lakeArray
+		lakeArray = lake
 
 	getLakeArray: () ->
 		return lakeArray

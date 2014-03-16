@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 import json
+from generators import *
 
 from gofish.forms import PlayerForm, UserForm
 from gofish.models import Bait, Boat, OwnsBait, Player
@@ -138,7 +139,7 @@ def trophies(request):
 
 ### API calls, return json ###
 def newgame(request):
-    res = {'lake': {}, 'weather': {}, 'currentTime': 6, 'money': 100}
+    res = {'lake': generateLake(), 'weather': {}, 'currentTime': 6, 'money': 100}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def move(request):

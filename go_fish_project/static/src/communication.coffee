@@ -1,7 +1,18 @@
-origin = ""
+origin = "http://127.0.0.1:8000/gofish/api/"
 
 
-newgameCallback = () ->
+newgameCallback = (data) ->
+	lakeArray = data.lake
+
+	console.log lakeArray
+
+	lake = new Lake lakeArray
+
+	console.log lake.getLakeArray()
+
+	world.addLake(lake)
+	world.drawScene()	
+
 moveCallback = () ->
 fishCallback = () ->
 changebateCallback = () ->
