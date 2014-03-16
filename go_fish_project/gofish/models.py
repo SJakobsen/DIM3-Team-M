@@ -77,6 +77,7 @@ class Game(models.Model):
     time = models.DecimalField(max_digits=8,decimal_places=2)
     x = models.IntegerField()
     y = models.IntegerField()
+    attempt = models.IntegerField()
 
     def __unicode__(self):
         return "lake: "+self.lake+" weather: "+self.weather+" played by username: "+self.player.username

@@ -30,7 +30,7 @@ def doFishing(depth, weather, hour, bait, attemptNo):
         chance += 5;
 
     # applying the diminishing returns
-    chance *= pow(0.9, (attemptNo-1))
+    chance *= pow(0.9, attemptNo)
 
     # cap the random
     if (chance < 0): chance = 0

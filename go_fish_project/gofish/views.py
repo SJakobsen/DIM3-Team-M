@@ -9,7 +9,7 @@ from actions import *
 from random import randint
 
 from gofish.forms import PlayerForm, UserForm
-from gofish.models import Bait, Boat, OwnsBait, Player, Game
+from gofish.models import *
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -255,7 +255,8 @@ def newgame(request):
                 'weather': json.dumps(generateWeather()),
                 'x': randint(0,19),
                 'y': randint(0,15),
-                'time': 0
+                'time': 0,
+                'attempt': 0
             }
         )
 
@@ -289,6 +290,7 @@ def move(request):
             if res['status'] == 'ok':
                 game.time = res['currentTime']
                 game.x = x; game.y = y
+                game.attempt = 0
                 game.save()
         except Game.DoesNotExist:
             pass
@@ -297,15 +299,43 @@ def move(request):
 
 @csrf_exempt
 def fish(request):
-    current_player = Player.objects.get(user=request.user)
-    res = { 'fish': [], 'currentTime': 12.5 }
+    pl = Player.objects.get(user=request.user)
+    game = Game.objects.get(player=pl)
+    res = { 'fish': [], 'currentTime': (float(game.time) + 0.5) }
 
-    bait = Bait.objects.all()[3]
-    for i in range(1, 5):
-        f = doFishing(3, generateWeather()[0], 8, bait, 1)
-        if f:
-            f['fish'] = f['fish'].name
-            res['fish'].append(f)
+    if (game.time > 11.5):
+        res['end_of_game'] = True
+    else:
+        # getting game parameters
+        lake = json.loads(game.lake)
+        weather = json.loads(game.weather)
+        depth = lake[game.y][game.x]
+        weather = weather[ int(game.time) ]
+
+        for i in range(1, 5):
+            f = doFishing(depth, weather, int(game.time), pl.bait, game.attempt)
+            if f:
+                # storing it as caught in the database
+                cf = CaughtFish(
+                    fish=f['fish'],
+                    game=game,
+                    size=int(f['size']),
+                    weight=f['weight'],
+                    price=f['price']
+                )
+                cf.save()
+                # adding this fish to result
+                f['fish'] = f['fish'].name
+                res['fish'].append(f)
+
+
+        # marking the time elapsed fishing
+        game.time = float(game.time) + 0.5
+        if game.time > 11.5:
+            res['end_of_game'] = True
+        # marking that we have fished here
+        game.attempt += 1
+        game.save()
 
     return HttpResponse(json.dumps(res), content_type="application/json")
 
