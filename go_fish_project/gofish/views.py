@@ -162,6 +162,7 @@ def move(request):
     res = {'currentTime': 10, 'status': 'ok'}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
+@csrf_exempt
 def fish(request):
     bait = Bait.objects.all()[3]
     res = doFishing(3, generateWeather()[0], 8, bait, 1)

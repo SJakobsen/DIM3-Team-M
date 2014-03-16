@@ -9,4 +9,6 @@ $(document).ready () ->
 	# get settings
 	# world.settings({})
 
-	newGame();
+	initUI()
+
+	newGame()

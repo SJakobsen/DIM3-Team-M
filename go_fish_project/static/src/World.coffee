@@ -40,7 +40,7 @@ class World
                     @setTile i, j, tileColor
     drawBoat: () ->
         if @boat
-            @setTile @boat.getCurrentX() - 1, @boat.getCurrentY() - 1, "#ff0000"
+            @setTile @boat.getCurrentX(), @boat.getCurrentY(), "#ff0000"
 
     drawScene: () ->
         @drawBackground()
@@ -71,8 +71,8 @@ class World
         return {"x" : x1, "y": y1}
     
     getIndicesByCoords: (x, y) ->
-        xx = Math.ceil(x / World.tileWidth)
-        yy = Math.ceil(y / World.tileHeight)
+        xx = Math.floor(x / World.tileWidth)
+        yy = Math.floor(y / World.tileHeight)
         return {x: xx, y: yy}
         
 
