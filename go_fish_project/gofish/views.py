@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 import json
 from generators import *
 from actions import *
+from random import randint
 
 from gofish.forms import PlayerForm, UserForm
 from gofish.models import Bait, Boat, OwnsBait, Player, Game
@@ -235,25 +236,53 @@ def buy_bait(request, name):
 ### API calls, return json ###
 @csrf_exempt
 def newgame(request):
-    res = {'lake': generateLake(), 'weather': generateWeather(), 'currentTime': 6, 'money': 100}
+    res = { 'error': 'bad request' }
+    try:
+        current_player = Player.objects.get(user=request.user)
+        game, created = Game.objects.get_or_create(
+            player=current_player,
+            defaults={
+                'lake': json.dumps(generateLake()),
+                'weather': json.dumps(generateWeather()),
+                'x': randint(0,19),
+                'y': randint(0,15),
+                'time': 0
+            }
+        )
+
+        res = {
+            'lake': json.loads(game.lake),
+            'weather': json.loads(game.weather),
+            'currentTime': float(game.time),
+            'x': game.x,
+            'y': game.y,
+            'money': int(current_player.money)
+        }
+    except Exception:
+        pass
+
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
 def move(request):
-    x = request.POST['x']
-    y = request.POST['y']
     res = { 'currentTime': 0, 'status': 'uncool' }
 
-    current_player = Player.objects.get(user=request.user)
-    try:
-        game = Game.objects.get(player=current_player)
-        res = moveTo(game.x, game.y, x, y, 20, 16, game.time)
-        if res['status'] == 'ok':
-            game.time = res['currentTime']
-            game.x = x; game.y = y
-            game.save()
-    except Game.DoesNotExist:
-        pass
+    if not ('x' in request.POST) or not ('y' in request.POST):
+        res = { 'error': 'bad request' }
+    else:
+        x = request.POST['x']
+        y = request.POST['y']
+
+        current_player = Player.objects.get(user=request.user)
+        try:
+            game = Game.objects.get(player=current_player)
+            res = moveTo(game.x, game.y, x, y, 20, 16, game.time)
+            if res['status'] == 'ok':
+                game.time = res['currentTime']
+                game.x = x; game.y = y
+                game.save()
+        except Game.DoesNotExist:
+            pass
 
     return HttpResponse(json.dumps(res), content_type="application/json")
 
