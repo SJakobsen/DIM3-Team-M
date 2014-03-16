@@ -45,13 +45,12 @@ class Boat(models.Model):
 class Player(models.Model):
     user = models.OneToOneField(User)
     
-    ranking = models.IntegerField()
     money = models.DecimalField(max_digits=12,decimal_places=2)
     boat = models.ForeignKey(Boat,blank=True,null=True)
     bait = models.ManyToManyField(Bait, through = 'OwnsBait')
     
     def __unicode__(self):
-        return "name: "+self.user.username+" ranking: "+str(self.ranking)+" money: "+str(self.money)
+        return "name: "+self.user.username+" money: "+str(self.money)
 
 class OwnsBait(models.Model):
     player = models.ForeignKey(Player)

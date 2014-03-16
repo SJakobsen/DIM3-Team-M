@@ -127,10 +127,11 @@ def game(request):
     inventory = get_inventory(request)
     context_dict = {'inventory': inventory}
     return render_to_response('gofish/game.html', context_dict, context)
-
+    
 @login_required
 def shop(request):
     context = RequestContext(request)
+    
     # Get current player
     current_player = Player.objects.get(user=request.user)
     
@@ -147,6 +148,86 @@ def trophies(request):
     context = RequestContext(request)
     context_dict = {}
     return render_to_response('gofish/trophies.html', context_dict, context)
+    
+### BUY CALLS ###
+
+@login_required
+def shop_return(request, failed):
+    context = RequestContext(request)
+    
+    # Get current player
+    current_player = Player.objects.get(user=request.user)
+    
+    boat_list = Boat.objects.order_by('price')
+    bait_list = Bait.objects.order_by('price')
+    # Get owned bait of current player
+    inventory = get_inventory(request)
+    
+    context_dict = {'player': current_player, 'boats': boat_list, 'bait': bait_list, 'inventory': inventory}
+    
+    if (failed):
+        context_dict['fail_message'] = "Not enough funds to purchase this item."
+    
+    return render_to_response('gofish/shop.html', context_dict, context)
+
+@login_required
+def buy_boat(request, name):
+    context = RequestContext(request)
+    
+    failed = False
+
+    try:
+        # Get current player
+        player = Player.objects.get(user=request.user)
+        # Get boat to buy
+        boat = Boat.objects.get(name=name)
+        context_dict = {}
+
+        if player.money > boat.price:
+            player.money = (player.money - boat.price)
+            player.boat = boat
+            player.save()
+        else:
+            failed = True
+            
+    except Boat.DoesNotExist:
+        # We get here if we didn't find the specified Boat.
+        # Don't do anything - the template displays the "no boat" message for us.
+        pass
+        
+    return shop_return(request, failed)
+
+@login_required    
+def buy_bait(request, name):
+    context = RequestContext(request)
+    
+    failed = False;
+
+    try:
+        # Get current player
+        player = Player.objects.get(user=request.user)
+        # Get bait to buy
+        bait = Bait.objects.get(name=name)
+        context_dict = {}
+
+        if player.money > bait.price:
+            # Get record of how many of this bait the player currently has
+            # Or create a new record if this information does not exist
+            owns_bait, created = OwnsBait.objects.get_or_create(player=player, bait=bait, defaults={'amount': 1})
+            player.money = (player.money - bait.price)
+            if (created==False):
+                owns_bait.amount = (owns_bait.amount + 1)
+            player.save()
+            owns_bait.save()
+        else:
+            failed = True;
+            
+    except Bait.DoesNotExist:
+        # We get here if we didn't find the specified Boat.
+        # Don't do anything - the template displays the "no boat" message for us.
+        pass
+        
+    return shop_return(request, failed)
 
 ### API calls, return json ###
 def newgame(request):
