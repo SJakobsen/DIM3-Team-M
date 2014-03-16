@@ -4,7 +4,9 @@ from django.contrib.auth.models import User
 from gofish.models import Player
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(help_text="Please enter a username.")
+    email = forms.CharField(help_text="Please enter your email.")
+    password = forms.CharField(widget=forms.PasswordInput(), help_text="Please enter a password.")
 
     class Meta:
         model = User
