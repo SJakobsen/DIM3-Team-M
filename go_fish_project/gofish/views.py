@@ -60,13 +60,12 @@ def register(request):
             user.set_password(user.password)
             user.save()
             
-            # initial bait for the player
-            bait = Bait.objects.get(name='Small_red_lure')
-
             player = player_form.save(commit=False)
             player.user = user
             player.save()
 
+            # initial bait for the player
+            bait = Bait.objects.get(name='Small_red_lure')
             player.bait = bait
             player.money = 500
             player.save()
