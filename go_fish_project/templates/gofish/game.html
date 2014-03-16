@@ -1,4 +1,9 @@
 {% extends 'gofish/base.html' %}
+{% load static %}
+
+{% block link_block %}
+	<script type="text/javascript" src="{% static 'lib/main.js' %}"></script>
+{% endblock %}
 
 {% block title %}Game{% endblock %}
 
@@ -28,5 +33,11 @@
 			<li><a href="/gofish/api/finish/" />Finish the game</a></li>
 		</ul>
 	</p>
+
+    <canvas id="world"></canvas>
+    <button id="fish">Fish!</button>
+    <button id="bate-store">Bate Store</button>
+    <button id="boat-store">Boat Store</button>	
+
 	</div>
 {% endblock %}
