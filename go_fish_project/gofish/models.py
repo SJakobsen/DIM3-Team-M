@@ -70,7 +70,7 @@ class Trophy(models.Model):
 
 class Game(models.Model):
     lake = models.CharField(max_length=3000)
-    weather = models.CharField(max_length=300)
+    weather = models.CharField(max_length=3000)
     fish = models.ManyToManyField(Fish, through = 'CaughtFish')
     player = models.OneToOneField(Player)
     time = models.DecimalField(max_digits=8,decimal_places=2)
@@ -78,7 +78,7 @@ class Game(models.Model):
     y = models.IntegerField()
 
     def __unicode__(self):
-        return "lake: "+self.lake+" weather: "+self.weather+" played by username: "+self.player.username
+        return "lake: "+self.lake+" weather: "+self.weather+" played by username: "+self.player.user.username
 
 class CaughtFish(models.Model):
     fish = models.ForeignKey(Fish)
