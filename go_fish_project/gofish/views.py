@@ -46,7 +46,7 @@ def register(request):
             registered = True
             
         else:
-            print user_form.errors, player_form.errors
+            print(user_form.errors, player_form.errors)
     
     # If accessing page to register an account
     else:
