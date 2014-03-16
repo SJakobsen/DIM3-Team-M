@@ -82,8 +82,8 @@ class CaughtFish(models.Model):
     fish = models.ForeignKey(Fish)
     game = models.ForeignKey(Game)
     size = models.IntegerField()
-	weight = models.DecimalField()
-	price = models.IntegerField()
+    weight = models.DecimalField(max_digits=8,decimal_places=2)
+    price = models.IntegerField()
 	
     def __unicode__(self):
         return "fish: "+str(self.fish)+" game: "+str(self.game)+" size: "+str(self.size)+" weight: "+str(self.weight)+" price: "+str(self.price)
