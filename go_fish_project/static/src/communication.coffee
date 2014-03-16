@@ -9,24 +9,29 @@ newgameCallback = (data) ->
 	lake = new Lake lakeArray
 
 	console.log lake.getLakeArray()
-
 	world.addLake(lake)
-	world.drawScene()	
+	world.addBoat(new Boat())
+	world.drawScene()
 
-moveCallback = () ->
+moveCallback = (data) =>
+	status = data.status
+	if status == "ok"
+		world.boat.applyNextCoordinates()
+		world.updateScene()
+
 fishCallback = () ->
 changebateCallback = () ->
 buybaitCallback = () ->
 buyboatCallback = () ->
 finishCallback = () ->
 
-newgameRequest  = {address: "newgame", callback: newgameCallback};
-moveRequest = {address: "move", callback: moveCallback}
-fishRequest = {address: "fish", callback: fishCallback}
-changebateRequest = {address: "change/bait", callback: changebateCallback}
-buybaitRequest = {address: "buy/bate", callback: buybaitCallback}
-buyboatRequest = {address: "buy/boat", callback: buyboatCallback}
-finishRequest = {address: "finish", callback: finishCallback}
+newgameRequest  = {address: "newgame/", callback: newgameCallback};
+moveRequest = {address: "move/", callback: moveCallback}
+fishRequest = {address: "fish/", callback: fishCallback}
+changebateRequest = {address: "change/bait/", callback: changebateCallback}
+buybaitRequest = {address: "buy/bate/", callback: buybaitCallback}
+buyboatRequest = {address: "buy/boat/", callback: buyboatCallback}
+finishRequest = {address: "finish/", callback: finishCallback}
 
 sendRequest = (request) ->
 	requestData = null
@@ -36,7 +41,7 @@ sendRequest = (request) ->
 	waitUI();
 
 	$.ajax {
-		type: 'GET',
+		type: 'POST',
 		url: origin+request.type.address,
 		data: requestData,
 		success: (data) ->

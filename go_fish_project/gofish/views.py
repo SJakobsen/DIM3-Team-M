@@ -5,9 +5,12 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 import json
 from generators import *
+from actions import *
 
 from gofish.forms import PlayerForm, UserForm
 from gofish.models import Bait, Boat, OwnsBait, Player
+
+from django.views.decorators.csrf import csrf_exempt
 
 def get_inventory(request):
     # Get current player
@@ -230,16 +233,21 @@ def buy_bait(request, name):
     return shop_return(request, failed)
 
 ### API calls, return json ###
+@csrf_exempt
 def newgame(request):
-    res = {'lake': generateLake(), 'weather': {}, 'currentTime': 6, 'money': 100}
+    res = {'lake': generateLake(), 'weather': generateWeather(), 'currentTime': 6, 'money': 100}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
+@csrf_exempt
 def move(request):
-    res = {'currentTime': 10}
+    res = {'currentTime': 10, 'status': 'ok'}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def fish(request):
-    res = {'catch': [], 'currentTime': 11}
+    bait = Bait.objects.all()[3]
+    res = doFishing(3, generateWeather()[0], 8, bait, 1)
+    if res:
+        res['fish'] = res['fish'].name
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def changebait(request):

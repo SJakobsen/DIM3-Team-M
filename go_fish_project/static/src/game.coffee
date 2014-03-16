@@ -1,7 +1,17 @@
+currentX = 0;
+currentY = 0;
+
+nextX = 0;
+nextY = 0;
+
 newGame = () ->
 	sendRequest {type: newgameRequest}
 
 move = (x, y) ->
+	boat = world.getBoat();
+	boat.setNextX x
+	boat.setNextY y
+
 	sendRequest {type: moveRequest, data: {x: x, y: y}}	
 
 fish = () ->
