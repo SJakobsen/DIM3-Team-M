@@ -243,6 +243,7 @@ def move(request):
     res = {'currentTime': 10, 'status': 'ok'}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
+@csrf_exempt
 def fish(request):
     res = { 'fish': [], 'currentTime': 12.5 }
 
