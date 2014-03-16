@@ -14,6 +14,11 @@ urlpatterns = patterns('',
     url(r'^rankings/$', views.rankings, name='rankings'),
     # a screen showing the trophies of a particular user
     url(r'^trophies/$', views.trophies, name='trophies'),
+    
+    # Shop calls to buy boats or bait
+    # Buy boat if player can afford it
+    url(r'^buy/boat/(?P<name>\w+)/$', views.buy_boat, name='buy_boat'),
+    url(r'^buy/bait/(?P<name>\w+)/$', views.buy_bait, name='buy_bait'),
 
     # API calls will return json in all cases
     # FIX: I think there should be different syntax here...
@@ -27,10 +32,6 @@ urlpatterns = patterns('',
     url(r'^api/fish/$', views.fish, name='fish'),
     # change the bait, choosing from the collection we have
     url(r'^api/change/bait/$', views.changebait, name='changebait'),
-    # buy the bait, to add in our collection
-    url(r'^api/buy/bait/$', views.buybait, name='buybait'),
-    # update the boat
-    url(r'^api/buy/boat/$', views.buyboat, name='buyboat'),
     # finish the game, sell the fish, get the trophies
     url(r'^api/finish/$', views.finish, name='finish')
 )

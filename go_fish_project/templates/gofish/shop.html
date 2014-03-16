@@ -1,5 +1,15 @@
 {% extends 'gofish/base.html' %}
 
+<!-- HOW I PLANNED TO NOTIFY USER OF A FAILED TRANSACTION
+
+{% if fail_message %}
+	<script>
+		alert("{{ fail_message }}");
+	</script>
+{% endif %}
+
+-->
+
 {% block title %}Game Shop{% endblock %}
 
 {% block body_block %}
@@ -25,7 +35,21 @@
 				<td>SOLD</td>
 				{% elif boat.price = player.boat.price %}
 				<td>EQUIPPED</td>
+				{% else %}
+				<td>
+				<form id="buy_form" method="post" action="/gofish/buy/boat/{{ boat.name }}/">
+					{% csrf_token %}
+					<button class="btn btn-primary" type="submit">Buy</button>
+				</form>
+				</td>
 				{% endif %}
+			{% else %}
+				<td>
+				<form id="buy_form" method="post" action="/gofish/buy/boat/{{ boat.name }}/">
+					{% csrf_token %}
+					<button class="btn btn-primary" type="submit">Buy</button>
+				</form>
+				</td>
 			{% endif %}
 			</tr>
 		{% endfor %}
@@ -46,6 +70,12 @@
 			<tr>
 			<td>{{ b.name }}</td>
 			<td>{{ b.price }}</td>
+			<td>
+			<form id="buy_form" method="post" action="/gofish/buy/bait/{{ b.name }}/">
+				{% csrf_token %}
+				<button class="btn btn-primary" type="submit">Buy</button>
+			</form>
+			</td>
 			</tr>
 			{% endfor %}
 		</table>
