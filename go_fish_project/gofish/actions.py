@@ -67,5 +67,6 @@ def moveTo(curX, curY, x, y, w, h, currTime):
         return mfailed
     timeNeeded = (abs(curX - x) + abs(curY - y)) * 0.2
     if (currTime + timeNeeded > 11.5):
+        mfailed['reason'] = 'The day is about to end. Try moving to a closer point!'
         return mfailed
     return { 'currentTime': currTime + timeNeeded, 'status': 'ok' }

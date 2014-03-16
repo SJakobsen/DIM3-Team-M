@@ -18,9 +18,23 @@ showFishingResults = (result) ->
 			res += "<li>"+x.fish+" has price "+x.price+", weight: "+x.weight+" and size: "+x.size+"</li>"
 		res += "</ul>"
 	else
-		res = "Sorry, no was fish caught :("
+		res = "Sorry, no fish was caught :("
 
-	$("#fishing-result").html(res);
+	showMessage res
+
+showMoveResult = (result) ->
+	if result.status == "ok"
+		showMessage "You have successfully moved!"
+	else
+		showMessage "You can not move. Reason: " + result.reason
+
+showMessage = (msg)	->
+	$("#message").hide()
+	$("#message").html(msg)
+	$("#message").slideDown("fast")
+
+updateTime = (time)	->
+	$("#time").html getTimeString time
 
 waitUI = () ->
 	
