@@ -89,43 +89,43 @@ def populate():
     #populate_bait---------------------------------------------------------
     baits = {
         'Small white rotex spinner': {
-            'name': 'Small white rotex spinner', 'colour': 0, 'size': 0, 'price': 2000
+            'name': 'Small_white_rotex_spinner', 'colour': 0, 'size': 0, 'price': 2000
         },
         'Small red rotex spinner': {
-            'name': 'Small red rotex spinner', 'colour': 1, 'size': 0, 'price': 2000
+            'name': 'Small_red_rotex_spinner', 'colour': 1, 'size': 0, 'price': 2000
         },
         'Medium white rotex spinner': {
-            'name': 'Medium white rotex spinner', 'colour': 0, 'size': 1, 'price': 2500
+            'name': 'Medium_white_rotex_spinner', 'colour': 0, 'size': 1, 'price': 2500
         },
         'Medium yellow rotex spinner': {
-            'name': 'Medium yellow rotex spinner', 'colour': 1, 'size': 0, 'price': 2500
+            'name': 'Medium_yellow_rotex_spinner', 'colour': 1, 'size': 0, 'price': 2500
         },
         'Silver spoon': {
-            'name': 'Silver spoon', 'colour': 0, 'size': 2, 'price': 1500
+            'name': 'Silver_spoon', 'colour': 0, 'size': 2, 'price': 1500
         },
         'Bronze spoon': {
-            'name': 'Bronze spoon', 'colour': 1, 'size': 2, 'price': 1500
+            'name': 'Bronze_spoon', 'colour': 1, 'size': 2, 'price': 1500
         },
         'Redhead wobbler': {
-            'name': 'Redhead wobbler', 'colour': 0, 'size': 2, 'price': 3000
+            'name': 'Redhead_wobbler', 'colour': 0, 'size': 2, 'price': 3000
         },
         'Tiger wobbler': {
-            'name': 'Tiger wobbler', 'colour': 1, 'size': 2, 'price': 3000
+            'name': 'Tiger_wobbler', 'colour': 1, 'size': 2, 'price': 3000
         },
         'Massive green wobbler': {
-            'name': 'Massive green wobbler', 'colour': 0, 'size': 3, 'price': 10000
+            'name': 'Massive_green_wobbler', 'colour': 0, 'size': 3, 'price': 10000
         },
         'Blue lure': {
-            'name': 'Blue lure', 'colour': 0, 'size': 2, 'price': 1000
+            'name': 'Blue_lure', 'colour': 0, 'size': 2, 'price': 1000
         },
         'Yellow lure': {
-            'name': 'Yellow lure', 'colour': 1, 'size': 2, 'price': 1000
+            'name': 'Yellow_lure', 'colour': 1, 'size': 2, 'price': 1000
         },
         'Small red lure': {
-            'name': 'Small red lure', 'colour': 1, 'size': 0, 'price': 500
+            'name': 'Small_red_lure', 'colour': 1, 'size': 0, 'price': 500
         },
         'Small green lure': {
-            'name': 'Small green lure', 'colour': 0, 'size': 0, 'price': 500
+            'name': 'Small_green_lure', 'colour': 0, 'size': 0, 'price': 500
         }
     }
 

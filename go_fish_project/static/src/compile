@@ -1,1 +1,1 @@
-coffee -bo ../lib/ -cwj main.js communication.coffee Lake.coffee World.coffee ui.coffee game.coffee main.coffee
+coffee -bo ../lib/ -cwj main.js service.coffee communication.coffee Boat.coffee Lake.coffee World.coffee ui.coffee game.coffee main.coffee
