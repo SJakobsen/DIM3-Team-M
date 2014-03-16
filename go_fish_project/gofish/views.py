@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 import json
 from generators import *
+from actions import *
 
 from gofish.forms import PlayerForm, UserForm
 from gofish.models import Bait, Boat, OwnsBait, Player
@@ -162,7 +163,10 @@ def move(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def fish(request):
-    res = {'catch': [], 'currentTime': 11}
+    bait = Bait.objects.all()[3]
+    res = doFishing(3, generateWeather()[0], 8, bait, 1)
+    if res:
+        res['fish'] = res['fish'].name
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def changebait(request):
