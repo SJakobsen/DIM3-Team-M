@@ -236,7 +236,7 @@ World = (function() {
           depth = this.worldArray[i][j];
           if (depth > 0) {
             tileColor = this.getTileColorByDepth(depth);
-            _results1.push(this.setTile(i, j, tileColor));
+            _results1.push(this.setTile(j, i, tileColor));
           } else {
             _results1.push(void 0);
           }

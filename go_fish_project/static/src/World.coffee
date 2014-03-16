@@ -37,7 +37,7 @@ class World
                 depth = @worldArray[i][j]
                 if depth > 0
                     tileColor = @getTileColorByDepth depth
-                    @setTile i, j, tileColor
+                    @setTile j, i, tileColor
     drawBoat: () ->
         if @boat
             @setTile @boat.getCurrentX(), @boat.getCurrentY(), "#ff0000"
