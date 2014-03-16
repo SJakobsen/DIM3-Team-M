@@ -328,7 +328,6 @@ def fish(request):
                 f['fish'] = f['fish'].name
                 res['fish'].append(f)
 
-
         # marking the time elapsed fishing
         game.time = float(game.time) + 0.5
         if game.time > 11.5:
@@ -344,5 +343,23 @@ def changebait(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def finish(request):
-    res = {'money': 110, 'trophies': []}
+    pl = Player.objects.get(user=request.user)
+    game = Game.objects.get(player=pl)
+    fish = CaughtFish.objects.filter(game=game)
+
+    # calculate monay gain
+    money = 0.0
+    for f in fish:
+        money += f.price
+
+    # save it
+    pl.money = int(pl.money) + money
+    pl.save()
+
+    # remove fish
+    fish.delete()
+    # delete game
+    game.delete()
+
+    res = {'money': money, 'trophies': []}
     return HttpResponse(json.dumps(res), content_type="application/json")

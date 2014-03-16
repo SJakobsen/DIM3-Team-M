@@ -7,11 +7,11 @@ worldHeight = 16
 
 def generateLake():
     lake = []
-    for i in range(0, worldWidth):
+    for i in range(0, worldHeight):
     	lake.append([])
 
-    for i in range(0, worldWidth):
-    	for j in range(0, worldHeight):
+    for i in range(0, worldHeight):
+    	for j in range(0, worldWidth):
     		lake[i].append(floor(randint(1,10)))
 
     return lake

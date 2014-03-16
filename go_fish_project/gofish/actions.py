@@ -52,7 +52,7 @@ def doFishing(depth, weather, hour, bait, attemptNo):
         if (size < 10):
             size = 10
 
-        price = round(float(f.base_price) + Z1 * float(f.base_price) / 2, 2)
+        price = int(float(f.base_price) + Z1 * float(f.base_price) / 2)
         if (price < 5):
             price = 5
 
