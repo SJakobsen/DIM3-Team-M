@@ -240,20 +240,24 @@ def newgame(request):
 
 @csrf_exempt
 def move(request):
-    x = request.POST['x']
-    y = request.POST['y']
     res = { 'currentTime': 0, 'status': 'uncool' }
 
-    current_player = Player.objects.get(user=request.user)
-    try:
-        game = Game.objects.get(player=current_player)
-        res = moveTo(game.x, game.y, x, y, 20, 16, game.time)
-        if res['status'] == 'ok':
-            game.time = res['currentTime']
-            game.x = x; game.y = y
-            game.save()
-    except Game.DoesNotExist:
-        pass
+    if not ('x' in request.POST) or not ('y' in request.POST):
+        res = { 'error': 'bad request' }
+    else:
+        x = request.POST['x']
+        y = request.POST['y']
+
+        current_player = Player.objects.get(user=request.user)
+        try:
+            game = Game.objects.get(player=current_player)
+            res = moveTo(game.x, game.y, x, y, 20, 16, game.time)
+            if res['status'] == 'ok':
+                game.time = res['currentTime']
+                game.x = x; game.y = y
+                game.save()
+        except Game.DoesNotExist:
+            pass
 
     return HttpResponse(json.dumps(res), content_type="application/json")
 
