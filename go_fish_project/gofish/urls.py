@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     # so that we can display it (lake, weather, time...)
     url(r'^api/newgame/$', views.newgame, name='newgame'),
     # move to a different location. returns time taken
-    url(r'^api/move/$', views.move, name='move'),
+    url(r'^api/move/(?P<x>\d+)/(?P<y>\d+)/$', views.move, name='move'),
     # fish in the current location. Returns what was caught
     url(r'^api/fish/$', views.fish, name='fish'),
     # change the bait, choosing from the collection we have

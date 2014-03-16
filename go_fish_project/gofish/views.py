@@ -8,7 +8,7 @@ from generators import *
 from actions import *
 
 from gofish.forms import PlayerForm, UserForm
-from gofish.models import Bait, Boat, OwnsBait, Player
+from gofish.models import Bait, Boat, OwnsBait, Player, Game
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -239,12 +239,25 @@ def newgame(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
-def move(request):
-    res = moveTo(5, 3, 7, 4, 20, 16, 10)
+def move(request, x, y):
+    res = { 'currentTime': 0, 'status': 'uncool' }
+
+    current_player = Player.objects.get(user=request.user)
+    try:
+        game = Game.objects.get(player=current_player)
+        res = moveTo(game.x, game.y, x, y, 20, 16, game.time)
+        if res['status'] == 'ok':
+            game.time = res['currentTime']
+            game.x = x; game.y = y
+            game.save()
+    except Game.DoesNotExist:
+        pass
+
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
 def fish(request):
+    current_player = Player.objects.get(user=request.user)
     res = { 'fish': [], 'currentTime': 12.5 }
 
     bait = Bait.objects.all()[3]
