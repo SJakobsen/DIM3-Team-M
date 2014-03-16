@@ -240,7 +240,7 @@ def newgame(request):
 
 @csrf_exempt
 def move(request):
-    res = {'currentTime': 10, 'status': 'ok'}
+    res = moveTo(5, 3, 7, 4, 20, 16, 10)
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
