@@ -73,3 +73,11 @@ def perceivedDepth(hour, depth):
 	6 >= 1  = 0
 	'''
 	return pDepth
+
+def perceivedWindyness(windms):
+    if windms < 5:
+        return 0
+    if windms < 11:
+        return 1
+    return 2
+
