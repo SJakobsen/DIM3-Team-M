@@ -73,6 +73,7 @@ class World
         @tileClicked indices.x, indices.y
 
     tileClicked: (x, y) ->
+        move(x, y)
         console.log x + " " + y
 
     settings: (data) ->

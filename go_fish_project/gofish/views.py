@@ -10,6 +10,8 @@ from actions import *
 from gofish.forms import PlayerForm, UserForm
 from gofish.models import Bait, Boat, OwnsBait, Player
 
+from django.views.decorators.csrf import csrf_exempt
+
 def get_inventory(request):
     # Get current player
     current_player = Player.objects.get(user=request.user)
@@ -150,10 +152,12 @@ def trophies(request):
     return render_to_response('gofish/trophies.html', context_dict, context)
 
 ### API calls, return json ###
+@csrf_exempt
 def newgame(request):
-    res = {'lake': generateLake(), 'weather': {}, 'currentTime': 6, 'money': 100}
+    res = {'lake': generateLake(), 'weather': generateWeather(), 'currentTime': 6, 'money': 100}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
+@csrf_exempt
 def move(request):
     res = {'currentTime': 10}
     return HttpResponse(json.dumps(res), content_type="application/json")

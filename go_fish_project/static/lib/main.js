@@ -26,37 +26,37 @@ buyboatCallback = function() {};
 finishCallback = function() {};
 
 newgameRequest = {
-  address: "newgame",
+  address: "newgame/",
   callback: newgameCallback
 };
 
 moveRequest = {
-  address: "move",
+  address: "move/",
   callback: moveCallback
 };
 
 fishRequest = {
-  address: "fish",
+  address: "fish/",
   callback: fishCallback
 };
 
 changebateRequest = {
-  address: "change/bait",
+  address: "change/bait/",
   callback: changebateCallback
 };
 
 buybaitRequest = {
-  address: "buy/bate",
+  address: "buy/bate/",
   callback: buybaitCallback
 };
 
 buyboatRequest = {
-  address: "buy/boat",
+  address: "buy/boat/",
   callback: buyboatCallback
 };
 
 finishRequest = {
-  address: "finish",
+  address: "finish/",
   callback: finishCallback
 };
 
@@ -68,7 +68,7 @@ sendRequest = function(request) {
   }
   waitUI();
   $.ajax({
-    type: 'GET',
+    type: 'POST',
     url: origin + request.type.address,
     data: requestData,
     success: function(data) {
@@ -211,6 +211,7 @@ World = (function() {
   };
 
   World.prototype.tileClicked = function(x, y) {
+    move(x, y);
     return console.log(x + " " + y);
   };
 
