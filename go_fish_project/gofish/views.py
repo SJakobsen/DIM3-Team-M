@@ -11,6 +11,22 @@ from gofish.models import Bait, Boat, OwnsBait, Player
 
 from django.views.decorators.csrf import csrf_exempt
 
+def get_inventory(request):
+    # Get current player
+    current_player = Player.objects.get(user=request.user)
+    
+    # Get owned bait of current player
+    inventory = OwnsBait.objects.filter(
+            # Link to current player
+            player=current_player
+            
+        ).filter(
+            # Only interested in currently available bait
+            amount__gt=0
+        )
+
+    return inventory
+
 def index(request):
     # Request the context of the request.
     # The context contains information such as the client's machine details, for example.
@@ -110,7 +126,8 @@ def rankings(request):
 @login_required
 def game(request):
     context = RequestContext(request)
-    context_dict = {}
+    inventory = get_inventory(request)
+    context_dict = {'inventory': inventory}
     return render_to_response('gofish/game.html', context_dict, context)
 
 @login_required
@@ -122,15 +139,9 @@ def shop(request):
     boat_list = Boat.objects.order_by('price')
     bait_list = Bait.objects.order_by('price')
     # Get owned bait of current player
-    owned_bait = OwnsBait.objects.filter(
-            # Link to current player
-            player=current_player
-            
-        ).filter(
-            # Only interested in currently available bait
-            amount__gt=0
-        )
-    context_dict = {'player': current_player, 'boats': boat_list, 'bait': bait_list, 'owned_bait': owned_bait}
+    inventory = get_inventory(request)
+    
+    context_dict = {'player': current_player, 'boats': boat_list, 'bait': bait_list, 'inventory': inventory}
     return render_to_response('gofish/shop.html', context_dict, context)
 
 @login_required
@@ -147,8 +158,6 @@ def newgame(request):
 
 @csrf_exempt
 def move(request):
-    newX = request.POST["x"] 
-    newY = request.POST["y"]
     res = {'currentTime': 10}
     return HttpResponse(json.dumps(res), content_type="application/json")
 

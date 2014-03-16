@@ -4,38 +4,63 @@
 
 {% block body_block %}
 	<div class="hero-unit">
-	<h1>There be dragons.</h1>
-
+	<h1>The Sea Cave</h1>
+	
+	<h2>Boats</h2>
 	{% if boats %}
-		<ul>
-			{% for boat in boats %}
-			{% if boat.cost <= player.boat.cost %}
-			<li>{{ boat.name }}: {{ boat.price }} SOLD</li>
-			{% else %}
-			<li>{{ boat.name }}: {{ boat.price }}</li>
-			{% endif %}
-			{% endfor %}
-		</ul>
-	{% endif %}
+	
+		<table style="width:300px">
+		<tr>
+		  <th>Boat</th>
+		  <th>Price</th> 
+		</tr>
 		
+		
+		{% for boat in boats %}
+			<tr>
+			<td>{{ boat.name }}</td>
+			<td>{{ boat.price }}</td>
+			{% if player.boat %}
+				{% if boat.price < player.boat.price %}
+				<td>SOLD</td>
+				{% elif boat.price = player.boat.price %}
+				<td>EQUIPPED</td>
+				{% endif %}
+			{% endif %}
+			</tr>
+		{% endfor %}
+		</table>
+	{% else %}
+		<p>I've misplaced my boats... Come back later, I'll hopefully have found them by then.</p>
+	{% endif %}
+	
+	<h2>Bait</h2>
 	{% if bait %}
-		<ul>
+	
+		<table style="width:300px">
+		<tr>
+		  <th>Bait</th>
+		  <th>Price</th> 
+		</tr>
 			{% for b in bait %}
-			<li>{{ b.name }}: {{ b.price }} </li>
+			<tr>
+			<td>{{ b.name }}</td>
+			<td>{{ b.price }}</td>
+			</tr>
 			{% endfor %}
-		</ul>
+		</table>
 		
 	{% else %}
-		<p> There seems to have been a problem with the bait shipment, try shopping again later.</p>
+		<p>There seems to have been a problem with the bait shipment, try shopping again later.</p>
 	{% endif %}
 	
 	<hr>
 	
-	{% if owned_bait %}
-		<p> You own: </p>
+	<h2> Your inventory </h2>
+	{% if inventory %}
 		<ul>
-			{% for owned in owned_bait %}
-			<li>{{ owned.bait.name }}: {{ owned.amount }}</li>
+			{% for item in inventory %}
+			<li>{{ item.bait.name }}: {{ item.amount }}</li>
 			{% endfor %}
 		</ul>
 	{% else %}	

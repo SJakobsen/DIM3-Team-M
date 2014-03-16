@@ -5,170 +5,60 @@ def populate():
     #reference from http://fogu.com/hm/animal_parade/fishing.php
     #size 20 = trophysize 10 = large, 5 = medium, 1 = small
     
-    swordfishtr = add_fish('swordfish',500,20)
-    
-    #populate swordfish_trophy
-    add_trophy('swordfish_trophy',swordfishtr)
-    
-    add_fish('swordfish',322,10)
-    add_fish('swordfish',250,5)
-    add_fish('swordfish',200,1)
-    add_fish('char',99,10)
-    add_fish('char',80,5)
-    add_fish('char',60,1)
-    add_fish('rainbow_trout',58,10)
-    add_fish('rainbow_trout',40,5)
-    add_fish('rainbow_trout',20,1)
-    add_fish('masu_trout',109,10)
-    add_fish('masu_trout',90,5)
-    add_fish('masu_trout',70,1)
-    add_fish('steelhead',72,10)
-    add_fish('steelhead',60,5)
-    add_fish('steelhead',40,1)
-    add_fish('carp',59,10)
-    add_fish('carp',40,5)
-    add_fish('carp',30,1)
-    
-    eeltr = add_fish('eel',300,20)
-    
-    #populate eel_trophy
-    add_trophy('eel_trophy',eeltr)
-    
-    add_fish('eel',198,10)
-    add_fish('eel',170,5)
-    add_fish('eel',140,1)
-    add_fish('pond_smelt',7,10)
-    add_fish('pond_smelt',5,5)
-    add_fish('pond_smelt',3,1)
-    add_fish('huchen',250,10)
-    add_fish('huchen',220,5)
-    add_fish('huchen',190,1)
-    
-    salmontr = add_fish('salmon',500,20)
-    
-    #populate salmon_trophy
-    add_trophy('salmon_trophy',salmontr)
-    
-    add_fish('salmon',277,10)
-    add_fish('salmon',240,5)
-    add_fish('salmon',220,1)
-    add_fish('catfish',106,10)
-    add_fish('catfish',90,5)
-    add_fish('catfish',60,1)
-    add_fish('puffer',17,10)
-    add_fish('puffer',13,5)
-    add_fish('puffer',10,1)
-    add_fish('goby',13,10)
-    add_fish('goby',10,5)
-    add_fish('goby',7,1)
-    add_fish('sardine',17,10)
-    add_fish('sardine',13,5)
-    add_fish('sardine',10,1)
-    add_fish('mahi-mahi',286,10)
-    add_fish('mahi-mahi',250,5)
-    add_fish('mahi-mahi',220,1)
-    add_fish('horse_mackerel',81,10)
-    add_fish('horse_mackerel',60,5)
-    add_fish('horse_mackerel',40,1)
-    add_fish('sea_bream',149,10)
-    add_fish('sea_bream',110,5)
-    add_fish('sea_bream',70,1)
-    add_fish('bonito',120,10)
-    add_fish('bonito',90,5)
-    add_fish('bonito',70,1)
-    add_fish('mackerel',85,10)
-    add_fish('mackerel',70,5)
-    add_fish('mackerel',60,1)
-    add_fish('saury',92,10)
-    add_fish('saury',70,5)
-    add_fish('saury',50,1)
-    add_fish('manta_ray',173,10)
-    add_fish('manta_ray',130,5)
-    add_fish('manta_ray',100,1)
-    add_fish('rockfish',76,10)
-    add_fish('rockfish',60,5)
-    add_fish('rockfish',40,1)
-    add_fish('cod',84,10)
-    add_fish('cod',60,5)
-    add_fish('cod',40,1)
-    add_fish('angler_fish',330,10)
-    add_fish('angler_fish',300,5)
-    add_fish('angler_fish',290,1)
-    add_fish('rock_trout',119,10)
-    add_fish('rock_trout',90,5)
-    add_fish('rock_trout',70,1)
-    add_fish('yellowtail',153,10)
-    add_fish('yellowtail',120,5)
-    add_fish('yellowtail',90,1)
-    
-    tunatr = add_fish('tuna',500,20)
-    
-    #populate tuna_trophy
-    add_trophy('tuna_trophy',tunatr)
-    
-    add_fish('tuna',317,10)
-    add_fish('tuna',300,5)
-    add_fish('tuna',280,1)
-    add_fish('conger_eel',139,10)
-    add_fish('conger_eel',110,5)
-    add_fish('conger_eel',70,1)
-    add_fish('halibut',125,10)
-    add_fish('halibut',110,5)
-    add_fish('halibut',90,1)
-    add_fish('flounder',67,10)
-    add_fish('flounder',70,5)
-    add_fish('flounder',55,1)
-    add_fish('squid',51,10)
-    add_fish('squid',40,5)
-    add_fish('squid',30,1)
-    add_fish('octopus',60,10)
-    add_fish('octopus',50,5)
-    add_fish('octopus',40,1)
-    add_fish('crawfish',7,10)
-    add_fish('crawfish',4,5)
-    add_fish('crawfish',3,1)
-    add_fish('freshwater_prawn',23,10)
-    add_fish('freshwater_prawn',20,5)
-    add_fish('freshwater_prawn',17,1)
-    add_fish('rock_lobster',91,10)
-    add_fish('rock_lobster',75,5)
-    add_fish('rock_lobster',60,1)
-    add_fish('lobster',180,10)
-    add_fish('lobster',160,5)
-    add_fish('lobster',140,1)
-    add_fish('shark',347,10)
-    add_fish('shark',320,5)
-    add_fish('shark',300,1)
-    add_fish('skull_jellyfish',665,10)
-    add_fish('skull_jellyfish',600,5)
-    add_fish('skull_jellyfish',550,1)
-    add_fish('giant_arowana',650,10)
-    add_fish('giant_arowana',620,5)
-    add_fish('giant_arowana',600,1)
-    add_fish('barracuda',680,10)
-    add_fish('barracuda',600,5)
-    add_fish('barracuda',550,1)
-    add_fish('tarpon',800,10)
-    add_fish('tarpon',770,5)
-    add_fish('tarpon',750,1)
-    add_fish('dorado',700,10)
-    add_fish('dorado',670,5)
-    add_fish('dorado',650,1)
-    add_fish('nautilus',830,10)
-    add_fish('nautilus',800,5)
-    add_fish('nautilus',780,1)
-    add_fish('king_salmon',760,10)
-    add_fish('king_salmon',740,5)
-    add_fish('king_salmon',720,1)
-    add_fish('giant_halibut',850,10)
-    add_fish('giant_halibut',830,5)
-    add_fish('giant_halibut',800,1)
-    add_fish('brown_trout',79,10)
-    add_fish('brown_trout',60,5)
-    add_fish('brown_trout',50,1)
-    add_fish('herring',76,10)
-    add_fish('herring',60,5)
-    add_fish('herring',50,1)
+    fish = {
+        'salmon': {
+            'name': 'salmon', 'base_price': 200, 'base_chance': 5,
+            'size_mean': 100, 'size_sd': 20,
+            'weight_mean': 15, 'weight_sd': 3,
+            'p_depth': 0, 'p_bsize': 1,
+            'p_clouds': 1, 'p_rain': 1, 'p_wind': 1
+        },
+        'pike': {
+            'name': 'pike', 'base_price': 50, 'base_chance': 50,
+            'size_mean': 100, 'size_sd': 20,
+            'weight_mean': 5, 'weight_sd': 2,
+            'p_depth': 1, 'p_bsize': 2,
+            'p_clouds': 1, 'p_rain': 1, 'p_wind': 1
+        },
+        'perch': {
+            'name': 'perch', 'base_price': 10, 'base_chance': 75,
+            'size_mean': 25, 'size_sd': 5,
+            'weight_mean': 0.7, 'weight_sd': 0.3,
+            'p_depth': 0, 'p_bsize': 0,
+            'p_clouds': 0, 'p_rain': 0, 'p_wind': 1
+        },
+        'zander': {
+            'name': 'zander', 'base_price': 50, 'base_chance': 50,
+            'size_mean': 60, 'size_sd': 15,
+            'weight_mean': 3, 'weight_sd': 1,
+            'p_depth': 2, 'p_bsize': 2,
+            'p_clouds': 2, 'p_rain': 2, 'p_wind': 2
+        },
+        'catfish': {
+            'name': 'catfish', 'base_price': 300, 'base_chance': 10,
+            'size_mean': 140, 'size_sd': 40,
+            'weight_mean': 16, 'weight_sd': 8,
+            'p_depth': 3, 'p_bsize': 3,
+            'p_clouds': 2, 'p_rain': 1, 'p_wind': 1
+        },
+        'bream': {
+            'name': 'bream', 'base_price': 35, 'base_chance': 40,
+            'size_mean': 40, 'size_sd': 10,
+            'weight_mean': 3, 'weight_sd': 1,
+            'p_depth': 2, 'p_bsize': 0,
+            'p_clouds': 1, 'p_rain': 0, 'p_wind': 1
+        },
+        'whitefish': {
+            'name': 'whitefish', 'base_price': 60, 'base_chance': 30,
+            'size_mean': 30, 'size_sd': 10,
+            'weight_mean': 1, 'weight_sd': 0.3,
+            'p_depth': 2, 'p_bsize': 0,
+            'p_clouds': 1, 'p_rain': 1, 'p_wind': 0
+        }
+    }
+
+    for f in fish:
+        add_fish(fish[f])
 
     #populate_boat-----------------------------------------------------------
     add_boat('wooden_boat',10, 20)
@@ -197,13 +87,50 @@ def populate():
 #    add_game('ocean','snow',e)
 
     #populate_bait---------------------------------------------------------
-    add_bait('artificial_bait',10,1)
-    add_bait('worm',20,4)
-    add_bait('lob_worm',30,10)
-    add_bait('rag_worm',50,12)
-    add_bait('crayfish',100,20)
-    add_bait('frog',150,20)
-    add_bait('mud_lobster',200,50)
+    baits = {
+        'Small white rotex spinner': {
+            'name': 'Small white rotex spinner', 'colour': 0, 'size': 0, 'price': 2000
+        },
+        'Small red rotex spinner': {
+            'name': 'Small red rotex spinner', 'colour': 1, 'size': 0, 'price': 2000
+        },
+        'Medium white rotex spinner': {
+            'name': 'Medium white rotex spinner', 'colour': 0, 'size': 1, 'price': 2500
+        },
+        'Medium yellow rotex spinner': {
+            'name': 'Medium yellow rotex spinner', 'colour': 1, 'size': 0, 'price': 2500
+        },
+        'Silver spoon': {
+            'name': 'Silver spoon', 'colour': 0, 'size': 2, 'price': 1500
+        },
+        'Bronze spoon': {
+            'name': 'Bronze spoon', 'colour': 1, 'size': 2, 'price': 1500
+        },
+        'Redhead wobbler': {
+            'name': 'Redhead wobbler', 'colour': 0, 'size': 2, 'price': 3000
+        },
+        'Tiger wobbler': {
+            'name': 'Tiger wobbler', 'colour': 1, 'size': 2, 'price': 3000
+        },
+        'Massive green wobbler': {
+            'name': 'Massive green wobbler', 'colour': 0, 'size': 3, 'price': 10000
+        },
+        'Blue lure': {
+            'name': 'Blue lure', 'colour': 0, 'size': 2, 'price': 1000
+        },
+        'Yellow lure': {
+            'name': 'Yellow lure', 'colour': 1, 'size': 2, 'price': 1000
+        },
+        'Small red lure': {
+            'name': 'Small red lure', 'colour': 1, 'size': 0, 'price': 500
+        },
+        'Small green lure': {
+            'name': 'Small green lure', 'colour': 0, 'size': 0, 'price': 500
+        }
+    }
+
+    for b in baits:
+        add_bait(baits[b])
 
     #show all the fish**********
     print "----------------------------------------"
@@ -260,8 +187,21 @@ def populate():
     print "Total number of game is: "+str(gamecount)
 
 
-def add_fish(namein,pricein,sizein):
-    f = Fish.objects.get_or_create(name=namein,price=pricein,size=sizein)[0]
+def add_fish(fh):
+    f = Fish.objects.get_or_create(
+        name=fh['name'],
+        base_price=fh['base_price'],
+        base_chance=fh['base_chance'],
+        size_mean=fh['size_mean'],
+        size_sd=fh['size_sd'],
+        weight_mean=fh['weight_mean'],
+        weight_sd=fh['weight_sd'],
+        p_depth=fh['p_depth'],
+        p_bsize=fh['p_bsize'],
+        p_clouds=fh['p_clouds'],
+        p_rain=fh['p_rain'],
+        p_wind=fh['p_wind']
+    )[0]
     return f
 
 def add_game(lakein,weatherin,playerin):
@@ -272,8 +212,13 @@ def add_caughtfish(fishin,gamein,amountin):
     cf = CaughtFish.objects.get_or_create(fish=fishin,game=gamein,amount=amountin)
     return cf
 
-def add_bait(namein,qualityin,pricein):
-    b = Bait.objects.get_or_create(name=namein,quality=qualityin,price=pricein)
+def add_bait(h):
+    b = Bait.objects.get_or_create(
+        name=h['name'],
+        colour=h['colour'],
+        size=h['size'],
+        price=h['price']
+    )[0]
     return b
 
 def add_boat(namein,speedin,pricein):

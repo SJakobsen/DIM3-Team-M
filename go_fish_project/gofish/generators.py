@@ -42,4 +42,4 @@ def generateWeather():
 		weatherList['temp'] = temp
 
 		weatherSet.append(dict(weatherList))
-	return weatherSet    
+	return weatherSet
