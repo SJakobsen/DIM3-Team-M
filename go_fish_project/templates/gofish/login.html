@@ -3,16 +3,18 @@
 {% block title %}Login{% endblock %}
 
 {% block body_block %}
-<h1>So... You wanna keep fishin' do ya?</h1>
-I guess we could let you.<br />
+	<div class="hero-unit">
+		<h1>So... You wanna keep fishin' do ya?</h1>
+		I guess we could let you.<br />
 
-<form id="login_form" method="post" action="/gofish/login/">
-	{% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
+		<form id="login_form" method="post" action="/gofish/login/">
+			{% csrf_token %}
+		    Username: <input type="text" name="username" value="" size="50" />
+		    <br />
+		    Password: <input type="password" name="password" value="" size="50" />
+		    <br />
 	
-    <input type="submit" value="submit" />
-</form>
+		    <input type="submit" value="submit" />
+		</form>
+	</div>
 {% endblock %}
