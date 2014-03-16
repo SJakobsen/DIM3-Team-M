@@ -158,7 +158,7 @@ def newgame(request):
 
 @csrf_exempt
 def move(request):
-    res = {'currentTime': 10}
+    res = {'currentTime': 10, 'status': 'ok'}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def fish(request):

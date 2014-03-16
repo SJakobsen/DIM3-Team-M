@@ -10,6 +10,8 @@ class World
 
     worldArray = null
 
+    boat = null
+
     constructor: (@canvas) ->
         @ctx = @canvas.getContext "2d"
         @canvas.width = World.canvasWidth
@@ -20,6 +22,9 @@ class World
 
     addLake: (lake) ->
         @worldArray = lake.getLakeArray()
+
+    addBoat: (boat) ->
+        @boat = boat
 
    
     drawBackground: () ->
@@ -33,18 +38,23 @@ class World
                 if depth > 0
                     tileColor = @getTileColorByDepth depth
                     @setTile i, j, tileColor
+    drawBoat: () ->
+        if @boat
+            @setTile @boat.getCurrentX() - 1, @boat.getCurrentY() - 1, "#ff0000"
 
     drawScene: () ->
         @drawBackground()
         @drawDecorations()
         @drawLake()
+        @drawBoat()
+
+    updateScene: () ->
+        @drawScene()
 
     setTile: (x, y, color) ->
         coords = @getCoordsByIndex x, y
-        
         @ctx.fillStyle = color
-        
-        @ctx.fillRect coords.x1, coords.y1, coords.x2, coords.y2
+        @ctx.fillRect coords.x, coords.y, World.tileWidth, World.tileHeight
 
     
     getTileColorByDepth: (depth) ->
@@ -52,13 +62,13 @@ class World
         code = color.toString(16)
         return "#0000"+code
 
-    getCoordsByIndex: (x, y) ->        
+    getCoordsByIndex: (x, y) ->       
         x1 = World.tileWidth * x
         y1 = World.tileHeight * y
 
-        x2 = x1 + World.tileWidth
-        y2 = y1 + World.tileHeight
-        return {"x1" : x1, "y1": y1, "x2": x2, "y2": y2}
+        # x2 = x1 + World.tileWidth
+        # y2 = y1 + World.tileHeight
+        return {"x" : x1, "y": y1}
     
     getIndicesByCoords: (x, y) ->
         xx = Math.ceil(x / World.tileWidth)
@@ -74,7 +84,6 @@ class World
 
     tileClicked: (x, y) ->
         move(x, y)
-        console.log x + " " + y
 
     settings: (data) ->
         if data.worldWidth
@@ -84,3 +93,6 @@ class World
 
     getWorldArray: () ->
         return @worldArray
+
+    getBoat: () ->
+        return @boat

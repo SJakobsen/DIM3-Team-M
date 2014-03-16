@@ -9,11 +9,16 @@ newgameCallback = (data) ->
 	lake = new Lake lakeArray
 
 	console.log lake.getLakeArray()
-
 	world.addLake(lake)
-	world.drawScene()	
+	world.addBoat(new Boat())
+	world.drawScene()
 
-moveCallback = () ->
+moveCallback = (data) =>
+	status = data.status
+	if status == "ok"
+		world.boat.applyNextCoordinates()
+		world.updateScene()
+
 fishCallback = () ->
 changebateCallback = () ->
 buybaitCallback = () ->
