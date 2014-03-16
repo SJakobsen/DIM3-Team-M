@@ -240,7 +240,7 @@ def newgame(request):
 
 @csrf_exempt
 def move(request):
-    res = {'currentTime': 10, 'status': 'ok'}
+    res = moveTo(5, 3, 7, 4, 20, 16, 10)
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
@@ -248,10 +248,11 @@ def fish(request):
     res = { 'fish': [], 'currentTime': 12.5 }
 
     bait = Bait.objects.all()[3]
-    f = doFishing(3, generateWeather()[0], 8, bait, 1)
-    if f:
-        f['fish'] = f['fish'].name
-        res['fish'].append(f)
+    for i in range(1, 5):
+        f = doFishing(3, generateWeather()[0], 8, bait, 1)
+        if f:
+            f['fish'] = f['fish'].name
+            res['fish'].append(f)
 
     return HttpResponse(json.dumps(res), content_type="application/json")
 

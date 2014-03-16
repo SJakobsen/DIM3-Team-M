@@ -61,4 +61,11 @@ def doFishing(depth, weather, hour, bait, attemptNo):
 
     return None
 
-
+def moveTo(curX, curY, x, y, w, h, currTime):
+    mfailed = { 'currentTime': currTime, 'status': 'uncool' }
+    if (x < 0 or y < 0 or x >= w or y >= h):
+        return mfailed
+    timeNeeded = (abs(curX - x) + abs(curY - y)) * 0.2
+    if (currTime + timeNeeded > 11.5):
+        return mfailed
+    return { 'currentTime': currTime + timeNeeded, 'status': 'ok' }
