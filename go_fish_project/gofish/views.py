@@ -270,8 +270,8 @@ def move(request):
     if not ('x' in request.POST) or not ('y' in request.POST):
         res = { 'error': 'bad request' }
     else:
-        x = request.POST['x']
-        y = request.POST['y']
+        x = int(request.POST['x'])
+        y = int(request.POST['y'])
 
         current_player = Player.objects.get(user=request.user)
         try:
