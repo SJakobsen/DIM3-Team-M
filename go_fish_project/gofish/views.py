@@ -4,9 +4,26 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 import json
+from generators import *
 
 from gofish.forms import PlayerForm, UserForm
-from gofish.models import Bait, Boat, Player
+from gofish.models import Bait, Boat, OwnsBait, Player
+
+def get_inventory(request):
+    # Get current player
+    current_player = Player.objects.get(user=request.user)
+    
+    # Get owned bait of current player
+    inventory = OwnsBait.objects.filter(
+            # Link to current player
+            player=current_player
+            
+        ).filter(
+            # Only interested in currently available bait
+            amount__gt=0
+        )
+
+    return inventory
 
 def index(request):
     # Request the context of the request.
@@ -107,16 +124,22 @@ def rankings(request):
 @login_required
 def game(request):
     context = RequestContext(request)
-    context_dict = {}
+    inventory = get_inventory(request)
+    context_dict = {'inventory': inventory}
     return render_to_response('gofish/game.html', context_dict, context)
 
 @login_required
 def shop(request):
     context = RequestContext(request)
+    # Get current player
+    current_player = Player.objects.get(user=request.user)
     
     boat_list = Boat.objects.order_by('price')
     bait_list = Bait.objects.order_by('price')
-    context_dict = {'boats': boat_list, 'bait': bait_list}
+    # Get owned bait of current player
+    inventory = get_inventory(request)
+    
+    context_dict = {'player': current_player, 'boats': boat_list, 'bait': bait_list, 'inventory': inventory}
     return render_to_response('gofish/shop.html', context_dict, context)
 
 @login_required
@@ -127,7 +150,7 @@ def trophies(request):
 
 ### API calls, return json ###
 def newgame(request):
-    res = {'lake': {}, 'weather': {}, 'currentTime': 6, 'money': 100}
+    res = {'lake': generateLake(), 'weather': {}, 'currentTime': 6, 'money': 100}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def move(request):
