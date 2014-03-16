@@ -276,7 +276,7 @@ def move(request):
         current_player = Player.objects.get(user=request.user)
         try:
             game = Game.objects.get(player=current_player)
-            res = moveTo(game.x, game.y, x, y, 20, 16, game.time)
+            res = moveTo(game.x, game.y, x, y, 20, 16, float(game.time))
             if res['status'] == 'ok':
                 game.time = res['currentTime']
                 game.x = x; game.y = y
