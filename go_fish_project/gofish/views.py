@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 import json
 
 from gofish.forms import PlayerForm, UserForm
-from gofish.models import Bait, Boat, Player
+from gofish.models import Bait, Boat, OwnsBait, Player
 
 def index(request):
     # Request the context of the request.
@@ -113,10 +113,21 @@ def game(request):
 @login_required
 def shop(request):
     context = RequestContext(request)
+    # Get current player
+    current_player = Player.objects.get(user=request.user)
     
     boat_list = Boat.objects.order_by('price')
     bait_list = Bait.objects.order_by('price')
-    context_dict = {'boats': boat_list, 'bait': bait_list}
+    # Get owned bait of current player
+    owned_bait = OwnsBait.objects.filter(
+            # Link to current player
+            player=current_player
+            
+        ).filter(
+            # Only interested in currently available bait
+            amount__gt=0
+        )
+    context_dict = {'player': current_player, 'boats': boat_list, 'bait': bait_list, 'owned_bait': owned_bait}
     return render_to_response('gofish/shop.html', context_dict, context)
 
 @login_required
