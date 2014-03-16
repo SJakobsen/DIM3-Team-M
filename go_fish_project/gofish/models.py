@@ -47,7 +47,8 @@ class Player(models.Model):
     
     money = models.DecimalField(max_digits=12,decimal_places=2)
     boat = models.ForeignKey(Boat,blank=True,null=True)
-    bait = models.ManyToManyField(Bait, through = 'OwnsBait')
+    bait = models.ForeignKey(Bait,blank=True,null=True,related_name='+')
+    baits = models.ManyToManyField(Bait, through = 'OwnsBait')
     
     def __unicode__(self):
         return "name: "+self.user.username+" money: "+str(self.money)
