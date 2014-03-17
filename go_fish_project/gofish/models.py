@@ -62,12 +62,14 @@ class OwnsBait(models.Model):
         return "player: "+str(self.player)+" bait: "+str(self.bait)+" amount: "+str(self.amount)
 
 class Trophy(models.Model):
-    name = models.CharField(max_length=30)
     fish = models.ForeignKey(Fish)
+    size = models.IntegerField()
+    weight = models.DecimalField(max_digits=8,decimal_places=2)
+    price = models.IntegerField()    
     player = models.ForeignKey(Player,blank=True,null=True)
     
     def __unicode__(self):
-        return "name: "+self.name+" for fish: "+str(self.fish)+" player: "+str(self.player)
+        return "Trophy fish: "+str(self.fish)+" of size: "+str(self.size)+" and weight: "+str(self.weight)+" and price: "+str(self.price)+" belonging to player: "+str(self.player)
 
 class Game(models.Model):
     lake = models.CharField(max_length=3000)
