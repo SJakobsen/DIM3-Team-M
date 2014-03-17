@@ -34,10 +34,11 @@ def index(request):
     # Request the context of the request.
     # The context contains information such as the client's machine details, for example.
     context = RequestContext(request)
-
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "I am bold font from the context"}
+    
+    if request.user.is_authenticated():
+        return game(request)
+        
+    context_dict = {}
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
@@ -73,8 +74,12 @@ def register(request):
 
             b = OwnsBait(player=player, bait=bait, amount=1)
             b.save()
+
+            new_user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            login(request, new_user)
             
             registered = True
+            return HttpResponseRedirect('/gofish/')
             
         else:
             print user_form.errors, player_form.errors
@@ -83,10 +88,10 @@ def register(request):
     else:
         user_form = UserForm()
         player_form = PlayerForm()
-        
+
     return render_to_response(
             'gofish/register.html',
-            {'user_form': user_form, 'player_form': player_form, 'registered': registered},
+            {'user_form': user_form, 'player_form': player_form},
             context)
     
 def user_login(request):
@@ -161,7 +166,9 @@ def shop(request):
 @login_required
 def trophies(request):
     context = RequestContext(request)
-    context_dict = {}
+    player = Player.objects.get(user=request.user)
+    inventory = get_inventory(request)
+    context_dict = {'player': player, 'inventory': inventory}
     return render_to_response('gofish/trophies.html', context_dict, context)
     
 ### BUY CALLS ###

@@ -8,11 +8,6 @@
 	<br />
 	
 		<div class="container">
-			{% if registered %}
-				<p><strong>Thank you for registering!</strong></p>
-				<p><a href="/gofish/login/">Login</a> when you want to get started.</p>
-			{% else %}
-
 			<form class="form-signin span8" id="user_form" method="post" action="/gofish/register/" enctype="multipart/form-data">
 
 				<h2 class="form-signin-heading">Get started here.</h2>
@@ -38,7 +33,6 @@
 			    <!-- Provide a button to click to submit the form. -->
 				<input class="btn btn-primary" type="submit" name="submit" value="Register"/>
 			</form>
-			{% endif %}	
 		</div>
 	</div>
 {% endblock %}
