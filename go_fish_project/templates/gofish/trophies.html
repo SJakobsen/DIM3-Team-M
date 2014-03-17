@@ -3,7 +3,19 @@
 {% block title %}Game Trophies{% endblock %}
 
 {% block body_block %}
-	<div class="hero-unit">
-    <h1>There be trophies.</h1>
-	</div>
+    <div class="hero-unit">
+        <h1>There be trophies!</h1>
+        <div class="row">
+            {% for t in trophies %}
+                <p>
+                    <img src="/static/img/fish/{{ t.fish.name }}.gif" alt="{{t.fish.name}}" /> 
+                    <small>
+                        <strong>{{ t.fish.name }}:</strong>
+                        {{ t.weight }}&nbsp;kg, {{ t.size }}&nbsp;cm.
+                        Priced at <strong>{{ t.price }}</strong> monies.
+                    </small>
+                </p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

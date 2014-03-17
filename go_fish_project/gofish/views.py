@@ -167,8 +167,8 @@ def shop(request):
 def trophies(request):
     context = RequestContext(request)
     player = Player.objects.get(user=request.user)
-    inventory = get_inventory(request)
-    context_dict = {'player': player, 'inventory': inventory}
+    trophies = Trophy.objects.filter(player=player).order_by('-price')
+    context_dict = {'player': player, 'trophies': trophies}
     return render_to_response('gofish/trophies.html', context_dict, context)
     
 ### BUY CALLS ###
@@ -394,6 +394,7 @@ def finish(request):
         except ObjectDoesNotExist:
             #No trophy of that fish type, add it
             trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)
+            trophy.save()
             dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
             newTrophies.append(dTrophy)
     # save it
