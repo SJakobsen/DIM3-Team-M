@@ -12,7 +12,7 @@ text-align:left;
 #message ul, .hero-unit .row {
 	margin-left: 0;
 }
-#message li img {
+#message li img, #game-result li img{
 	width: 100%;
 }
 #time {
