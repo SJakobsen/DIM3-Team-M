@@ -47,6 +47,9 @@ updateTime = (time)	->
 updateWeather = (weather, time) ->
 	$('#weather').html getWeatherString(weather, time)
 
+updateMoney = (money) ->
+	$('#money').html money
+
 showGameResults = (data) ->
 	el = $("#game-result")
 	str = ""
