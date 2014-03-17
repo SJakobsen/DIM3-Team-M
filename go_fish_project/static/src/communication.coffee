@@ -26,7 +26,7 @@ fishCallback = (data) ->
 		finish()
 
 	
-changebateCallback = () ->
+changebaitCallback = () ->
 buybaitCallback = () ->
 buyboatCallback = () ->
 finishCallback = (data) ->
@@ -37,8 +37,8 @@ finishCallback = (data) ->
 newgameRequest  = {address: "newgame/", callback: newgameCallback};
 moveRequest = {address: "move/", callback: moveCallback}
 fishRequest = {address: "fish/", callback: fishCallback}
-changebateRequest = {address: "change/bait/", callback: changebateCallback}
-buybaitRequest = {address: "buy/bate/", callback: buybaitCallback}
+changebaitRequest = {address: "change/bait/", callback: changebaitCallback}
+buybaitRequest = {address: "buy/bait/", callback: buybaitCallback}
 buyboatRequest = {address: "buy/boat/", callback: buyboatCallback}
 finishRequest = {address: "finish/", callback: finishCallback}
 
