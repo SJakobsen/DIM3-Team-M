@@ -242,7 +242,7 @@ Boat = (function() {
   };
 
   function Boat(x, y) {
-    boatImage.src = "/static/img/boats/boat.jpg";
+    boatImage.src = "/static/img/boats/boat.gif";
     currentX = x;
     currentY = y;
   }

@@ -10,7 +10,7 @@ class Boat
         world.drawBoat()
 
     constructor: (x, y) ->
-        boatImage.src = "/static/img/boats/boat.jpg"
+        boatImage.src = "/static/img/boats/boat.gif"
 
         currentX = x
         currentY = y
