@@ -403,19 +403,19 @@ showFishingResults = function(result) {
   res = JSON.stringify(result);
   if (result.fish.length > 0) {
     if (result.fish.length > 1) {
-      res = "Yay! You have caught some fishes! Take a look at them!";
+      res = "<p>Yay! You have caught some fishes! Take a look at them!</p>";
     } else {
-      res = "Yay! You have caught a fish! Take a look at it!";
+      res = "<p>Yay! You have caught a fish! Take a look at it!</p>";
     }
     res += "<ul class='row'>";
     _ref = result.fish;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
-      res += "<li class='span4'>" + (getFishImage(x.fish).outerHTML) + " " + x.price + " monies, " + x.weight + " kg, " + x.size + " cm</li>";
+      res += "<li class='span4'>\n	" + (getFishImage(x.fish).outerHTML) + "\n	<small><strong>" + x.fish + ":</strong> " + x.weight + "&nbsp;kg, " + x.size + "&nbsp;cm. +" + x.price + "&nbsp;monies</small>\n</li>";
     }
     res += "</ul>";
   } else {
-    res = "Sorry, no fish was caught :(";
+    res = "<p>Sorry, no fish was caught :(</p>";
   }
   return showMessage(res);
 };

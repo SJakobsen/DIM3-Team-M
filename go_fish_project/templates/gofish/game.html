@@ -9,33 +9,13 @@
 
 {% block body_block %}
 	<div class="hero-unit">
-    <h1>Time to fish</h1>
-
-<!-- 	<h2>Ingame screens separated to distinct pages:</h2>
-	<p>
-		<ul>
-			<li><a href="/gofish/shop/" />Shop</a></li>
-			<li><a href="/gofish/rankings/" />Rankings</a></li>
-			<li><a href="/gofish/trophies/" />Trophies</a></li>
-		</ul>
-	</p>
-
-	<h2>API calls, doing all work and returning the json results:</h2>
-	<p>
-		<ul>
-			<li><a href="/gofish/api/newgame/" />New Game</a></li>
-			<li><a href="/gofish/api/move/" />Move to a different location</a></li>
-			<li><a href="/gofish/api/fish/" />Fish!</a></li>
-			<li><a href="/gofish/api/change/bait/" />Change the bait</a></li>
-			<li><a href="/gofish/api/finish/" />Finish the game</a></li>
-		</ul>
-	</p> -->
-
-    <canvas id="world"></canvas>
-    <button id="fish">Fish!</button>
-    <div id="time"></div>
-    <div id="message"></div>
-    <!-- <div id="fishing-result"></div> -->
-
+		<div id="message"></div>
+		<div class="row">
+			<button id="fish" class="span2">Fish!</button>
+			<div class="span5">It is <div id="time" style="display:inline"></div> now.</div>
+		</div>
+		<div>Click on the map to travel there!</div>
+		<canvas id="world"></canvas>
+		<!-- <div id="fishing-result"></div> -->
 	</div>
 {% endblock %}
