@@ -162,7 +162,9 @@ def shop(request):
 @login_required
 def trophies(request):
     context = RequestContext(request)
-    context_dict = {}
+    player = Player.objects.get(user=request.user)
+    inventory = get_inventory(request)
+    context_dict = {'player': player, 'inventory': inventory}
     return render_to_response('gofish/trophies.html', context_dict, context)
     
 ### BUY CALLS ###
