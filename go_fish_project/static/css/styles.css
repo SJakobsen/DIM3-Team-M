@@ -26,3 +26,16 @@ canvas {
 	display: none;
 }
 
+#current-catches ul {
+	list-style-type: none;
+	margin-left: 5px;
+}
+
+#current-catches img {
+	width: 64px;
+	margin-right: 5px;
+}
+
+#current-catches .new {
+	font-weight: bold;
+}
