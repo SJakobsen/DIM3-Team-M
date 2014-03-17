@@ -74,8 +74,12 @@ def register(request):
 
             b = OwnsBait(player=player, bait=bait, amount=1)
             b.save()
+
+            new_user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            login(request, new_user)
             
             registered = True
+            return HttpResponseRedirect('/gofish/')
             
         else:
             print user_form.errors, player_form.errors
@@ -84,10 +88,10 @@ def register(request):
     else:
         user_form = UserForm()
         player_form = PlayerForm()
-        
+
     return render_to_response(
             'gofish/register.html',
-            {'user_form': user_form, 'player_form': player_form, 'registered': registered},
+            {'user_form': user_form, 'player_form': player_form},
             context)
     
 def user_login(request):
