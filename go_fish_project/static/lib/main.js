@@ -407,11 +407,11 @@ showFishingResults = function(result) {
     } else {
       res = "Yay! You have caught a fish! Take a look at it!";
     }
-    res += "<ul>";
+    res += "<ul class='row'>";
     _ref = result.fish;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
-      res += "<li>" + x.fish + " has price " + x.price + ", weight: " + x.weight + " and size: " + x.size + "</li>";
+      res += "<li class='span4'>" + (getFishImage(x.fish).outerHTML) + " " + x.price + " monies, " + x.weight + " kg, " + x.size + " cm</li>";
     }
     res += "</ul>";
   } else {
