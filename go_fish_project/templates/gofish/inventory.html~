@@ -4,7 +4,7 @@
           <th></th>
 		  <th>Bait</th>
 		  <th>#</th>
-          <th>Status</th> 
+          <th>Equip</th> 
 		</tr>
         {% for item in inventory %}
                 {% if player.bait = item.bait %}

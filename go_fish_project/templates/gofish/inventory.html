@@ -1,7 +1,6 @@
 <table>
     {% if inventory and player %}
 		<tr>
-          <th></th>
 		  <th>Bait</th>
 		  <th>#</th>
           <th>Equip</th> 
@@ -9,15 +8,21 @@
         {% for item in inventory %}
                 {% if player.bait = item.bait %}
 			        <tr>
-                    <td> <img src="/static/img/baits/{{ item.bait.name }}.gif" alt="{{b.name}}" /> </td>
-                    <td><a href="/gofish/api/change/bait/{{ item.bait.name }}/">{{ item.bait.name }}</a></td>
+                    <td>
+                        <a href="/gofish/api/change/bait/{{ item.bait.name }}/">
+                            <img src="/static/img/baits/{{ item.bait.name }}.gif" alt="{{b.name}}" />
+                        </a> 
+                    </td>
                     <td>{{ item.amount }}</td>
                     <td>EQUIPPED</td>
                     </tr>
                 {% else %}
                     <tr>
-                    <td> <img src="/static/img/baits/{{ item.bait.name }}.gif" alt="{{b.name}}" /> </td>
-                    <td><a href="/gofish/api/change/bait/{{ item.bait.name }}/">{{ item.bait.name }}</a></td>
+                    <td>
+                        <a href="/gofish/api/change/bait/{{ item.bait.name }}/">
+                            <img src="/static/img/baits/{{ item.bait.name }}.gif" alt="{{b.name}}" />
+                        </a> 
+                    </td>
                     <td>{{ item.amount }}</td>
                     <td>-</td>
                     </tr>
