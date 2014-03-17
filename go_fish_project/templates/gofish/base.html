@@ -60,6 +60,9 @@
 				<div class="well sidebar-nav">
 				   {% block sidebar %}
 				   {% endblock %}
+				   {% if player %}
+				   		<p> Money: {{ player.money }} <p>
+				   {% endif %}
 				   <div id="cats">
 				       {% if inventory %}
 				           <ul class="nav nav-list"><li>Inventory</li></ul>

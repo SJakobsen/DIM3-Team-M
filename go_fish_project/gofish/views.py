@@ -138,8 +138,9 @@ def rankings(request):
 @login_required
 def game(request):
     context = RequestContext(request)
+    player = Player.objects.get(user=request.user)
     inventory = get_inventory(request)
-    context_dict = {'inventory': inventory}
+    context_dict = {'player': player, 'inventory': inventory}
     return render_to_response('gofish/game.html', context_dict, context)
     
 @login_required
@@ -375,9 +376,13 @@ def finish(request):
                 trophy.weight = f.weight
                 trophy.price = f.price
                 trophy.save()
-                newTrophies.append(trophy)
+                dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+                newTrophies.append(dTrophy)
         except ObjectDoesNotExist:
-            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)    
+            #No trophy of that fish type, add it
+            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)
+            dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+            newTrophies.append(dTrophy)
     # save it
     pl.money = int(pl.money) + money
     pl.save()
