@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 import json
 from generators import *
 from actions import *
@@ -347,12 +348,24 @@ def finish(request):
     pl = Player.objects.get(user=request.user)
     game = Game.objects.get(player=pl)
     fish = CaughtFish.objects.filter(game=game)
+    newTrophies = []
 
     # calculate monay gain
     money = 0.0
     for f in fish:
         money += f.price
-
+        # see if fish is a trophy
+        try:
+            trophy = Trophy.objects.get(player=pl, fish__name=f.fish.name)
+            if trophy.price < f.price:
+                trophy.fish = f.fish
+                trophy.size = f.size
+                trophy.weight = f.weight
+                trophy.price = f.price
+                trophy.save()
+                newTrophies.append(trophy)
+        except ObjectDoesNotExist:
+            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)    
     # save it
     pl.money = int(pl.money) + money
     pl.save()
@@ -362,5 +375,5 @@ def finish(request):
     # delete game
     game.delete()
 
-    res = {'money': money, 'trophies': []}
+    res = {'money': money, 'trophies': newTrophies}
     return HttpResponse(json.dumps(res), content_type="application/json")
