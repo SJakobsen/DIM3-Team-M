@@ -413,7 +413,7 @@ def finish(request):
                 dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': float(f.weight), 'price': f.price}
 
                 for d in newTrophies:
-                    if d[name]=f.fish.name:
+                    if d['name']==f.fish.name:
                         newTrophies.remove(d)
                 newTrophies.append(dTrophy)
         except ObjectDoesNotExist:
