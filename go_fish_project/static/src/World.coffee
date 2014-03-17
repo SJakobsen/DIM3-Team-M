@@ -46,8 +46,21 @@ class World
                     tileColor = @getTileColorByDepth depth
                     @setTile j, i, tileColor
     drawBoat: () ->
-        if @boat
-            @setTile @boat.getCurrentX(), @boat.getCurrentY(), "#ff0000"
+        image = @boat.getBoatImage()
+        if image
+            # @setTile @boat.getCurrentX(), @boat.getCurrentY(), "#ff0000"
+            tileX = @boat.getCurrentX()
+            tileY = @boat.getCurrentY()
+            
+            coords = @getCoordsByIndex tileX, tileY
+
+
+            coords.x += World.tileWidth / 2  - image.width / 2
+            coords.y += World.tileHeight / 2 - image.height / 2
+
+            print coords
+
+            @ctx.drawImage image, Math.floor(coords.x), Math.floor(coords.y), World.tileWidth, World.tileHeight
 
     drawScene: () ->
         @drawBackground()

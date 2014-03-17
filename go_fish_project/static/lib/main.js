@@ -225,7 +225,7 @@ getFishImage = function(name) {
 };
 
 Boat = (function() {
-  var currentX, currentY, nextX, nextY;
+  var boatImage, currentX, currentY, nextX, nextY;
 
   currentX = 0;
 
@@ -235,7 +235,14 @@ Boat = (function() {
 
   nextY = 0;
 
+  boatImage = new Image();
+
+  boatImage.onload = function() {
+    return world.drawBoat();
+  };
+
   function Boat(x, y) {
+    boatImage.src = "/static/img/boats/boat.jpg";
     currentX = x;
     currentY = y;
   }
@@ -275,6 +282,10 @@ Boat = (function() {
   Boat.prototype.applyNextCoordinates = function() {
     currentX = nextX;
     return currentY = nextY;
+  };
+
+  Boat.prototype.getBoatImage = function() {
+    return boatImage;
   };
 
   return Boat;
@@ -367,8 +378,16 @@ World = (function() {
   };
 
   World.prototype.drawBoat = function() {
-    if (this.boat) {
-      return this.setTile(this.boat.getCurrentX(), this.boat.getCurrentY(), "#ff0000");
+    var coords, image, tileX, tileY;
+    image = this.boat.getBoatImage();
+    if (image) {
+      tileX = this.boat.getCurrentX();
+      tileY = this.boat.getCurrentY();
+      coords = this.getCoordsByIndex(tileX, tileY);
+      coords.x += World.tileWidth / 2 - image.width / 2;
+      coords.y += World.tileHeight / 2 - image.height / 2;
+      print(coords);
+      return this.ctx.drawImage(image, Math.floor(coords.x), Math.floor(coords.y), World.tileWidth, World.tileHeight);
     }
   };
 

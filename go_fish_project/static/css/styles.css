@@ -39,3 +39,7 @@ canvas {
 #current-catches .new {
 	font-weight: bold;
 }
+
+#team-m-logo {
+	height: 100px;
+}
