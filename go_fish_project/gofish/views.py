@@ -138,8 +138,9 @@ def rankings(request):
 @login_required
 def game(request):
     context = RequestContext(request)
+    player = Player.objects.get(user=request.user)
     inventory = get_inventory(request)
-    context_dict = {'inventory': inventory}
+    context_dict = {'player': player, 'inventory': inventory}
     return render_to_response('gofish/game.html', context_dict, context)
     
 @login_required
