@@ -415,7 +415,7 @@ def finish(request):
             #No trophy of that fish type, add it
             trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)
             trophy.save()
-            dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+            dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': float(f.weight), 'price': f.price}
             newTrophies.append(dTrophy)
     # save it
     pl.money = int(pl.money) + money
