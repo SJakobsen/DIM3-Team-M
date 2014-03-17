@@ -363,7 +363,6 @@ def fish(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def changebait(request, name):
-    res = {}
     try:
         # Get current player
         pl = Player.objects.get(user=request.user)
@@ -373,18 +372,21 @@ def changebait(request, name):
         if pl.bait.name != name:
             # Get record of how many of this bait the player currently has
             try:
-                owns_bait = OwnsBait.objects.get(player=pl, bait__name=name, amount>=0)
+                owns_bait = OwnsBait.objects.get(player=pl, bait__name=name, amount__gte=0)
                 pl.bait = bait
                 pl.save()
             except ObjectDoesNotExist:
+                pass
                 #player has none of that bait
+                #do nothing
         else:
+            pass
             #player is trying to switch to same bait; do nothing
     except Bait.DoesNotExist:
         # We get here if we didn't find the specified bait
         # Do nothing
         pass
-    return HttpResponse(json.dumps(res), content_type="application/json")
+    return game(request)
 
 @csrf_exempt
 @login_required

@@ -33,7 +33,6 @@ finishCallback = (data) ->
 	print data
 	newGame()
 
-
 newgameRequest  = {address: "newgame/", callback: newgameCallback};
 moveRequest = {address: "move/", callback: moveCallback}
 fishRequest = {address: "fish/", callback: fishCallback}

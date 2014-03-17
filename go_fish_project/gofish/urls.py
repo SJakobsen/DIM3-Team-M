@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     # fish in the current location. Returns what was caught
     url(r'^api/fish/$', views.fish, name='fish'),
     # change the bait, choosing from the collection we have
-    url(r'^api/change/bait/$', views.changebait, name='changebait'),
+    url(r'^api/change/bait/(?P<name>\w+)/$', views.changebait, name='changebait'),
     # finish the game, sell the fish, get the trophies
     url(r'^api/finish/$', views.finish, name='finish')
 )
