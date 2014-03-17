@@ -44,6 +44,9 @@ showMessage = (msg)	->
 updateTime = (time)	->
 	$("#time").html getTimeString time
 
+updateWeather = (weather, time) ->
+	$('#weather').html getWeatherString(weather, time)
+
 showGameResults = (data) ->
 	el = $("#game-result")
 	str = ''

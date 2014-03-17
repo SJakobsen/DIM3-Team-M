@@ -11,6 +11,7 @@ newgameCallback = (data) ->
 	world.drawScene()
 
 	updateTime data.currentTime
+	updateWeather world.getWeather(), data.currentTime
 
 moveCallback = (data) ->
 	status = data.status
@@ -20,10 +21,12 @@ moveCallback = (data) ->
 	showMoveResult(data)
 
 	updateTime data.currentTime
+	updateWeather world.getWeather(), data.currentTime
 
 fishCallback = (data) ->
 	showFishingResults data
 	updateTime data.currentTime
+	updateWeather world.getWeather(), data.currentTime
 	if data.end_of_game
 		finish()
 
