@@ -215,6 +215,8 @@ World = (function() {
 
   World.tileHeight = World.canvasHeight / World.worldHeight;
 
+  World.bgcolors = ['error', '#64ccfc', '#1eaad8', '#1c91ff', '#1c67ff', '#0032ff', '#0000ff', '#0000bb', '#000088', '#000044', '#000022'];
+
   worldArray = null;
 
   boat = null;
@@ -289,10 +291,7 @@ World = (function() {
   };
 
   World.prototype.getTileColorByDepth = function(depth) {
-    var code, color;
-    color = 255 - (depth - 1) * 15;
-    code = color.toString(16);
-    return "#0000" + code;
+    return World.bgcolors[depth];
   };
 
   World.prototype.getCoordsByIndex = function(x, y) {
