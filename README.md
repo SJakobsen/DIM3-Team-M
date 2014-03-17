@@ -1,8 +1,8 @@
-#DIM3-Team-M
+#Go!Fish
 
-##Level 3 DIM Team Project
+View this project online at: http://nadvamir.pythonanywhere.com/gofish/
 
-##Go!Fish
+##Team M
 
 We are using the standard version of python described in the Tango With Django book. To run this project on your own machine, enter the go_fish_project directory and run the following commands:
 
