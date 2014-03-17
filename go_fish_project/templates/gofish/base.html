@@ -44,7 +44,8 @@
 	               </ul>
 	               <ul class="nav">
 	                   {% if user.is_authenticated %}
-	                   <li><a href="/gofish/game/">Game</a></li>
+	                   <li><a href="/gofish/shop/">Shop</a></li>
+	                   <li><a href="/gofish/trophies/">Trophies</a></li>
 	                   {% endif %}
 	                   <li><a href="/gofish/rankings/">Rankings</a></li>
 	               </ul>
@@ -60,6 +61,9 @@
 				<div class="well sidebar-nav">
 				   {% block sidebar %}
 				   {% endblock %}
+				   {% if player %}
+				   		<p> Money: {{ player.money }} <p>
+				   {% endif %}
 				   <div id="cats">
 				       {% if inventory %}
 				           <ul class="nav nav-list"><li>Inventory</li></ul>

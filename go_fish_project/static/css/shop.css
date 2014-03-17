@@ -7,3 +7,11 @@ th
 {
 text-align:left;
 }
+
+/* not a shop */
+#message ul {
+	margin-left: 0;
+}
+#message li img {
+	width: 100%;
+}
