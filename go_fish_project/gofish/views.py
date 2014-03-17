@@ -167,8 +167,9 @@ def shop(request):
 def trophies(request):
     context = RequestContext(request)
     player = Player.objects.get(user=request.user)
+    inventory = get_inventory(request)
     trophies = Trophy.objects.filter(player=player).order_by('-price')
-    context_dict = {'player': player, 'trophies': trophies}
+    context_dict = {'player': player, 'trophies': trophies, 'inventory': inventory}
     return render_to_response('gofish/trophies.html', context_dict, context)
     
 ### BUY CALLS ###

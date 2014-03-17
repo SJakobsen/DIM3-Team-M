@@ -15,7 +15,7 @@
 {% block body_block %}
 	<div class="hero-unit">
 	<h1>The Sea Cave</h1>
-	<!--
+	
 	<h2>Boats</h2>
 	{% if boats %}
 	
@@ -57,7 +57,7 @@
 	{% else %}
 		<p>I've misplaced my boats... Come back later, I'll hopefully have found them by then.</p>
 	{% endif %}
-	-->
+	
 	<h2>Bait</h2>
 	{% if bait %}
 	
