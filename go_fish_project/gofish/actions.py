@@ -47,8 +47,7 @@ def doFishing(depth, weather, hour, bait, attemptNo):
             price = 5
 
         # and we caught it!
-        return { 'fish': f, 'weight': weight, 'size': size, 'price': price,
-                'chance': chance, 'origChance': getAccomodatedChance(f, depth, weather, hour, bait) }
+        return { 'fish': f, 'weight': weight, 'size': size, 'price': price }
 
     return None
 
@@ -72,7 +71,6 @@ def chooseRandomFish(fish, depth, weather, hour, bait):
     chance = 0;
     for f in fish:
         chance += getAccomodatedChance(f, depth, weather, hour, bait)
-        print f.name, getAccomodatedChance(f, depth, weather, hour, bait)
 
     # generate random number from the whole probability distribution
     rnd = randint(1, chance)
