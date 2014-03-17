@@ -59,8 +59,6 @@
 	    <div class="row-fluid">
 	        <div class="span3">
 				<div class="well sidebar-nav">
-				   {% block sidebar %}
-				   {% endblock %}
 				   {% if player %}
 				   		<p> Money: {{ player.money }} <p>
 				   {% endif %}
@@ -72,7 +70,17 @@
 				    </div>
 				</div>
 	            <!--/.well -->
+
+				<div class="well sidebar-nav" id="current-catches">
+					<h3>Current catch</h3>
+					<ul>
+					</ul>
+				</div>	            
 	        </div>
+
+		   {% block sidebar %}
+		   {% endblock %}
+
 	        <!--/span-->
 	        <div class="span9">
 	            {% block body_block %}

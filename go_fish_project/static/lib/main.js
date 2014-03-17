@@ -78,6 +78,7 @@ newgameCallback = function(data) {
   var lake, lakeArray;
   $("#message").empty();
   hideGameResults();
+  $("#current-catches ul").empty();
   lakeArray = data.lake;
   lake = new Lake(lakeArray);
   world.setWeather(data.weather);
@@ -463,7 +464,7 @@ initUI = function() {
 };
 
 showFishingResults = function(result) {
-  var res, x, _i, _len, _ref;
+  var res, str, x, _i, _j, _len, _len1, _ref, _ref1;
   res = JSON.stringify(result);
   if (result.fish.length > 0) {
     if (result.fish.length > 1) {
@@ -480,6 +481,18 @@ showFishingResults = function(result) {
     res += "</ul>";
   } else {
     res = "<p>Sorry, no fish was caught :(</p>";
+  }
+  if (result.fish.length > 0) {
+    str = "";
+    _ref1 = result.fish;
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      x = _ref1[_j];
+      str += "<li class='new'>" + (getFishImage(x.fish).outerHTML);
+      str += "" + x.fish + ": " + x.weight + "&nbsp;kg, +" + x.price + "&nbsp;monies";
+      str += "</li>";
+    }
+    $(".new").removeClass("new");
+    $("#current-catches ul").prepend(str);
   }
   return showMessage(res);
 };
