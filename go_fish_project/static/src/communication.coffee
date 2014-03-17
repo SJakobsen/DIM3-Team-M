@@ -3,6 +3,8 @@ origin = location.origin + "/gofish/api/"
 
 newgameCallback = (data) ->
 	$("#message").empty()
+	hideGameResults()
+
 	lakeArray = data.lake
 	lake = new Lake lakeArray
 	world.setWeather(data.weather)
@@ -11,6 +13,7 @@ newgameCallback = (data) ->
 	world.drawScene()
 
 	updateTime data.currentTime
+	updateWeather world.getWeather(), data.currentTime
 
 moveCallback = (data) ->
 	status = data.status
@@ -20,10 +23,12 @@ moveCallback = (data) ->
 	showMoveResult(data)
 
 	updateTime data.currentTime
+	updateWeather world.getWeather(), data.currentTime
 
 fishCallback = (data) ->
 	showFishingResults data
 	updateTime data.currentTime
+	updateWeather world.getWeather(), data.currentTime
 	if data.end_of_game
 		finish()
 
