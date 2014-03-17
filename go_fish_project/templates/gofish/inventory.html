@@ -1,8 +1,7 @@
 <ul>
     {% if inventory %}
         {% for item in inventory %}
-			<li><a href="/gofish/">test</a></li>
-            <li>{{ item.name }}: {{ item.quantity }}</li>
+			<li>{{ item.bait.name }}: {{ item.amount }}</li>
         {% endfor %}
     {% else %}
         <li>Inventory is empty</li>
