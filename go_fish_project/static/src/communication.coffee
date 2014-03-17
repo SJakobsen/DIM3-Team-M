@@ -2,8 +2,10 @@ origin = location.origin + "/gofish/api/"
 
 
 newgameCallback = (data) ->
+	$("#message").empty()
 	lakeArray = data.lake
 	lake = new Lake lakeArray
+	world.setWeather(data.weather)
 	world.addLake(lake)
 	world.addBoat(new Boat(data.x, data.y))
 	world.drawScene()
@@ -30,8 +32,7 @@ changebaitCallback = () ->
 buybaitCallback = () ->
 buyboatCallback = () ->
 finishCallback = (data) ->
-	print data
-	newGame()
+	showGameResults data
 
 newgameRequest  = {address: "newgame/", callback: newgameCallback};
 moveRequest = {address: "move/", callback: moveCallback}

@@ -2,6 +2,9 @@ initUI = () ->
 	$("#fish").click () ->
 		fish()
 
+	$("#new-game").click () ->
+		newGame()
+
 
 showFishingResults = (result) ->
 	res = JSON.stringify result
@@ -40,6 +43,25 @@ showMessage = (msg)	->
 
 updateTime = (time)	->
 	$("#time").html getTimeString time
+
+showGameResults = (data) ->
+	el = $("#game-result")
+	str = ''
+	str += '<div> You have earned '+data.money+' monies!</div>'
+	if data.trophies.length > 0
+		str += '<div> Your trophies are: '
+		str += '<ul>'
+		for x in data.trophies
+			str += "<li><small><strong>#{x.fish}:</strong> #{x.weight}&nbsp;kg, #{x.size}&nbsp;cm. +#{x.price}&nbsp;monies</small>
+			</li>"
+		str += '</ul>'
+	$("#info", el).html(str);
+	el.show()
+
+hideGameResults = () ->
+	$("#game-result").hide()
+
+
 
 waitUI = () ->
 	

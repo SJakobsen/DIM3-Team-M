@@ -17,6 +17,8 @@ class World
 
     boat = null
 
+    weather = null
+
     constructor: (@canvas) ->
         @ctx = @canvas.getContext "2d"
         @canvas.width = World.canvasWidth
@@ -99,3 +101,9 @@ class World
 
     getBoat: () ->
         return @boat
+
+    setWeather: (weather) ->
+        @weather = weather
+
+    getWeather: () ->
+        return @weather
