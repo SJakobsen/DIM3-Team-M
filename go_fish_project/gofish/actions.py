@@ -48,7 +48,7 @@ def doFishing(depth, weather, hour, bait, attemptNo):
         if (weight < 0.2):
             weight = 0.2
 
-        size = round(float(f.size_mean) + Z1 * float(f.size_sd), 2)
+        size = int(round(float(f.size_mean) + Z1 * float(f.size_sd), 2))
         if (size < 10):
             size = 10
 
