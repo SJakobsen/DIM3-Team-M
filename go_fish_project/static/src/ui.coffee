@@ -8,17 +8,22 @@ showFishingResults = (result) ->
 	
 	if result.fish.length > 0
 		if result.fish.length > 1
-			res = "Yay! You have caught some fishes! Take a look at them!"
+			res = "<p>Yay! You have caught some fishes! Take a look at them!</p>"
 
 		else 
-			res = "Yay! You have caught a fish! Take a look at it!"
+			res = "<p>Yay! You have caught a fish! Take a look at it!</p>"
 
 		res += "<ul class='row'>"
 		for x in result.fish
-			res += "<li class='span4'>#{getFishImage(x.fish).outerHTML} #{x.price} monies, #{x.weight} kg, #{x.size} cm</li>"
+			res += """
+				<li class='span4'>
+					#{getFishImage(x.fish).outerHTML}
+					<small><strong>#{x.fish}:</strong> #{x.weight}&nbsp;kg, #{x.size}&nbsp;cm. +#{x.price}&nbsp;monies</small>
+				</li>
+			"""
 		res += "</ul>"
 	else
-		res = "Sorry, no fish was caught :("
+		res = "<p>Sorry, no fish was caught :(</p>"
 
 	showMessage res
 
