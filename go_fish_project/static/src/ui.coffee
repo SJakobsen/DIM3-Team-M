@@ -46,20 +46,25 @@ updateTime = (time)	->
 
 showGameResults = (data) ->
 	el = $("#game-result")
-	str = ''
-	str += '<div> You have earned '+data.money+' monies!</div>'
+	str = ""
+	str += "<h2>The day is over!</h2><div> You have earned #{data.money} monies!</div>"
 	if data.trophies.length > 0
-		str += '<div> Your trophies are: '
-		str += '<ul>'
+		str += "<div> Your trophies are: "
+		str += "<ul class='row'>"
 		for x in data.trophies
-			str += "<li><small><strong>#{x.fish}:</strong> #{x.weight}&nbsp;kg, #{x.size}&nbsp;cm. +#{x.price}&nbsp;monies</small>
-			</li>"
+			str += "<li class='span4'>#{getFishImage(x.name).outerHTML}<small><strong>#{x.name}:</strong> #{x.weight}&nbsp;kg, #{x.size}&nbsp;cm. +#{x.price}&nbsp;monies</small></li>"
 		str += '</ul>'
 	$("#info", el).html(str);
 	el.show()
+	$('body').animate({
+		scrollTop: el.offset().top
+	}, 500);
 
 hideGameResults = () ->
 	$("#game-result").hide()
+	$('body').animate({
+		scrollTop: 0
+	}, 500);	
 
 
 

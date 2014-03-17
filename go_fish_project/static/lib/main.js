@@ -31,6 +31,7 @@ origin = location.origin + "/gofish/api/";
 newgameCallback = function(data) {
   var lake, lakeArray;
   $("#message").empty();
+  hideGameResults();
   lakeArray = data.lake;
   lake = new Lake(lakeArray);
   world.setWeather(data.weather);
@@ -455,24 +456,30 @@ updateTime = function(time) {
 showGameResults = function(data) {
   var el, str, x, _i, _len, _ref;
   el = $("#game-result");
-  str = '';
-  str += '<div> You have earned ' + data.money + ' monies!</div>';
+  str = "";
+  str += "<h2>The day is over!</h2><div> You have earned " + data.money + " monies!</div>";
   if (data.trophies.length > 0) {
-    str += '<div> Your trophies are: ';
-    str += '<ul>';
+    str += "<div> Your trophies are: ";
+    str += "<ul class='row'>";
     _ref = data.trophies;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
-      str += "<li><small><strong>" + x.fish + ":</strong> " + x.weight + "&nbsp;kg, " + x.size + "&nbsp;cm. +" + x.price + "&nbsp;monies</small>			</li>";
+      str += "<li class='span4'>" + (getFishImage(x.name).outerHTML) + "<small><strong>" + x.name + ":</strong> " + x.weight + "&nbsp;kg, " + x.size + "&nbsp;cm. +" + x.price + "&nbsp;monies</small></li>";
     }
     str += '</ul>';
   }
   $("#info", el).html(str);
-  return el.show();
+  el.show();
+  return $('body').animate({
+    scrollTop: el.offset().top
+  }, 500);
 };
 
 hideGameResults = function() {
-  return $("#game-result").hide();
+  $("#game-result").hide();
+  return $('body').animate({
+    scrollTop: 0
+  }, 500);
 };
 
 waitUI = function() {};

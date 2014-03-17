@@ -3,6 +3,8 @@ origin = location.origin + "/gofish/api/"
 
 newgameCallback = (data) ->
 	$("#message").empty()
+	hideGameResults()
+
 	lakeArray = data.lake
 	lake = new Lake lakeArray
 	world.setWeather(data.weather)
