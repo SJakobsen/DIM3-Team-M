@@ -406,7 +406,7 @@ def finish(request):
             if trophy.price < f.price:
                 trophy.fish = f.fish
                 trophy.size = f.size
-                trophy.weight = f.weight
+                trophy.weight = float(f.weight)
                 trophy.price = f.price
                 trophy.save()
                 dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
