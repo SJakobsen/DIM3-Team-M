@@ -1,13 +1,10 @@
-DIM3-Team-M
-===========
+#DIM3-Team-M
 
-Level 3 DIM Team Project
+##Level 3 DIM Team Project
 
-Go!Fish
+##Go!Fish
 
-We are using the standard version of python described in the Tango With Django book.
-
-To run this project on your own machine, enter the go_fish_project directory and run the following commands:
+We are using the standard version of python described in the Tango With Django book. To run this project on your own machine, enter the go_fish_project directory and run the following commands:
 
 python manage.py syncdb
 
