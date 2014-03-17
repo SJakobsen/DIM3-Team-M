@@ -363,9 +363,13 @@ def finish(request):
                 trophy.weight = f.weight
                 trophy.price = f.price
                 trophy.save()
-                newTrophies.append(trophy)
+                dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+                newTrophies.append(dTrophy)
         except ObjectDoesNotExist:
-            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)    
+            #No trophy of that fish type, add it
+            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)
+            dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+            newTrophies.append(dTrophy)
     # save it
     pl.money = int(pl.money) + money
     pl.save()
