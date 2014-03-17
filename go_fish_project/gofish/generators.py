@@ -15,18 +15,20 @@ def generateLake():
             lake[i].append(1)
 
     # make holes
-    for i in range(0, randint(0,5)):
+    for i in range(0, randint(5,15)):
         makeHole(lake, worldWidth, worldHeight)
 
     return lake
 
 def makeHole(lake, w, h):
     # choose the pit
-    x = randint(0, w-1)
-    y = randint(0, h-1)
+    x = randint(1, w-2)
+    y = randint(1, h-2)
 
     # choose the depth
-    d = randint(3, 10)
+    d = randint(5, 10)
+    if (d > 10):
+        d = 10
 
     # start spreading the hole
     digDown(lake, d, x, y, w, h)
@@ -37,10 +39,13 @@ def digDown(lake, d, x, y, w, h):
     if lake[y][x] >= d:
         return
     lake[y][x] = d
-    digDown(lake, d-1, x, y-1, w, h)
-    digDown(lake, d-1, x+1, y, w, h)
-    digDown(lake, d-1, x, y+1, w, h)
-    digDown(lake, d-1, x-1, y, w, h)
+    digDown(lake, nextDepth(d), x, y-1, w, h)
+    digDown(lake, nextDepth(d), x+1, y, w, h)
+    digDown(lake, nextDepth(d), x, y+1, w, h)
+    digDown(lake, nextDepth(d), x-1, y, w, h)
+
+def nextDepth(d):
+    return d - randint(0, 2)
 
 def generateWeather():
     weatherSet = []
