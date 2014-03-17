@@ -360,6 +360,8 @@ def fish(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def changebait(request):
+    pl = Player.objects.get(user=request.user)
+    
     res = {}
     return HttpResponse(json.dumps(res), content_type="application/json")
 

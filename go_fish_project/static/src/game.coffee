@@ -11,8 +11,8 @@ move = (x, y) ->
 fish = () ->
 	sendRequest {type: fishRequest}
 
-changebate = (id) ->
-	sendRequest {type: changebateRequest, data: {id: id}}
+changebait = (id) ->
+	sendRequest {type: changebaitRequest, data: {id: id}}
 
 buybait = (id) ->
 	sendRequest {type: buybaitRequest, data: {id: id}}
