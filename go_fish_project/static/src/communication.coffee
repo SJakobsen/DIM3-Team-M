@@ -15,6 +15,7 @@ newgameCallback = (data) ->
 
 	updateTime data.currentTime
 	updateWeather world.getWeather(), data.currentTime
+	updateMoney data.money
 
 moveCallback = (data) ->
 	status = data.status

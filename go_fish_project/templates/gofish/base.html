@@ -60,7 +60,7 @@
 	        <div class="span3">
 				<div class="well sidebar-nav">
 				   {% if player %}
-				   		<p> Money: {{ player.money }} <p>
+				   		<p> Money: <span id="money">{{ player.money }}</span><p>
 				   {% endif %}
 				   <div id="cats">
 				       {% if inventory %}

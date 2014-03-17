@@ -15,7 +15,7 @@ text-align:left;
 #message li img, #game-result li img{
 	width: 100%;
 }
-#time {
+#time, #money {
 	font-weight: bold;
 }
 canvas {
