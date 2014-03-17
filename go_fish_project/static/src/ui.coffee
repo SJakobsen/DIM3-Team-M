@@ -15,7 +15,7 @@ showFishingResults = (result) ->
 
 		res += "<ul class='row'>"
 		for x in result.fish
-			res += "<li class='span4'><img src='' alt='#{x.fish}'/> #{x.price} monies, #{x.weight} kg, #{x.size} cm</li>"
+			res += "<li class='span4'>#{getFishImage(x.fish).outerHTML} #{x.price} monies, #{x.weight} kg, #{x.size} cm</li>"
 		res += "</ul>"
 	else
 		res = "Sorry, no fish was caught :("

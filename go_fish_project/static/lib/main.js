@@ -411,7 +411,7 @@ showFishingResults = function(result) {
     _ref = result.fish;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       x = _ref[_i];
-      res += "<li class='span4'><img src='' alt='" + x.fish + "'/> " + x.price + " monies, " + x.weight + " kg, " + x.size + " cm</li>";
+      res += "<li class='span4'>" + (getFishImage(x.fish).outerHTML) + " " + x.price + " monies, " + x.weight + " kg, " + x.size + " cm</li>";
     }
     res += "</ul>";
   } else {
