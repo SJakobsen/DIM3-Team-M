@@ -250,17 +250,29 @@ def newgame(request):
     res = { 'error': 'bad request' }
     try:
         current_player = Player.objects.get(user=request.user)
+        defaults = {
+            'lake': json.dumps(generateLake()),
+            'weather': json.dumps(generateWeather()),
+            'x': randint(0,19),
+            'y': randint(0,15),
+            'time': 0,
+            'attempt': 0
+        }
+
         game, created = Game.objects.get_or_create(
             player=current_player,
-            defaults={
-                'lake': json.dumps(generateLake()),
-                'weather': json.dumps(generateWeather()),
-                'x': randint(0,19),
-                'y': randint(0,15),
-                'time': 0,
-                'attempt': 0
-            }
+            defaults=defaults
         )
+
+        # check if the game is playable
+        if created:
+            # if it is not, recreate a new game
+            if game.time > 11.5:
+                game.delete()
+                game, created = Game.objects.get_or_create(
+                    player=current_player,
+                    defaults=defaults
+                )
 
         res = {
             'lake': json.loads(game.lake),
@@ -364,9 +376,13 @@ def finish(request):
                 trophy.weight = f.weight
                 trophy.price = f.price
                 trophy.save()
-                newTrophies.append(trophy)
+                dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+                newTrophies.append(dTrophy)
         except ObjectDoesNotExist:
-            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)    
+            #No trophy of that fish type, add it
+            trophy = Trophy(fish=f.fish, size=f.size, weight=f.weight, price=f.price, player=pl)
+            dTrophy = {'name': f.fish.name, 'size': f.size, 'weight': f.weight, 'price': f.price}
+            newTrophies.append(dTrophy)
     # save it
     pl.money = int(pl.money) + money
     pl.save()
