@@ -245,7 +245,7 @@ def buy_bait(request, name):
             failed = True;
             
     except Bait.DoesNotExist:
-        # We get here if we didn't find the specified Boat.
+        # We get here if we didn't find the specified bait.
         # Don't do anything - the template displays the "no bait" message for us.
         pass
         
@@ -362,11 +362,31 @@ def fish(request):
 
     return HttpResponse(json.dumps(res), content_type="application/json")
 
-def changebait(request):
-    pl = Player.objects.get(user=request.user)
-    
-    res = {}
-    return HttpResponse(json.dumps(res), content_type="application/json")
+def changebait(request, name):
+    try:
+        # Get current player
+        pl = Player.objects.get(user=request.user)
+        # Get bait to switch to
+        bait = Bait.objects.get(name=name)
+        #If the player is not trying to switch to the same bait
+        if pl.bait.name != name:
+            # Get record of how many of this bait the player currently has
+            try:
+                owns_bait = OwnsBait.objects.get(player=pl, bait__name=name, amount__gte=0)
+                pl.bait = bait
+                pl.save()
+            except ObjectDoesNotExist:
+                pass
+                #player has none of that bait
+                #do nothing
+        else:
+            pass
+            #player is trying to switch to same bait; do nothing
+    except Bait.DoesNotExist:
+        # We get here if we didn't find the specified bait
+        # Do nothing
+        pass
+    return game(request)
 
 @csrf_exempt
 @login_required

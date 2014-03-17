@@ -359,10 +359,10 @@ World = (function() {
     };
   };
 
-  World.prototype.worldClicked = function(event) {
+  World.prototype.worldClicked = function(e) {
     var indices, x, y;
-    x = event.offsetX;
-    y = event.offsetY;
+    x = e.offsetX || e.pageX - $(e.target).offset().left;
+    y = e.offsetY || e.pageY - $(e.target).offset().top;
     indices = this.getIndicesByCoords(x, y);
     return this.tileClicked(indices.x, indices.y);
   };

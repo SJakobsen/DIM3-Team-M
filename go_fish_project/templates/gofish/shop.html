@@ -83,18 +83,4 @@
 	{% else %}
 		<p>There seems to have been a problem with the bait shipment, try shopping again later.</p>
 	{% endif %}
-	
-	<hr>
-	
-	<h2> Your inventory </h2>
-	{% if inventory %}
-		<ul>
-			{% for item in inventory %}
-			<li>{{ item.bait.name }}: {{ item.amount }}</li>
-			{% endfor %}
-		</ul>
-	{% else %}	
-		<p>You don't currently own anything.</p>
-	{% endif %}
-	</div>
 {% endblock %}

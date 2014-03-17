@@ -1,7 +1,11 @@
 <ul>
-    {% if inventory %}
+    {% if inventory and player %}
         {% for item in inventory %}
-			<li>{{ item.bait.name }}: {{ item.amount }}</li>
+        {% if player.bait = item.bait %}
+			<li><a href="/gofish/api/change/bait/{{ item.bait.name }}/">{{ item.bait.name }}</a>: {{ item.amount }} EQUIPPED</li>
+        {% else %}
+            <li><a href="/gofish/api/change/bait/{{ item.bait.name }}/">{{ item.bait.name }}</a>: {{ item.amount }}</li>
+        {% endif %}
         {% endfor %}
     {% else %}
         <li>Inventory is empty</li>

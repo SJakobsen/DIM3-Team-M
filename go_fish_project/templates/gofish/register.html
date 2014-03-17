@@ -1,11 +1,10 @@
-{% extends 'gofish/base.html' %}
+{% extends 'gofish/cover_base.html' %}
 
 {% block title %}Register{% endblock %}
 
-{% block body_block %}
-	<div class="hero-unit">
-	<h1>Start fishing today</h1>
-	<br />
+{% block heading %}Start fishing today{% endblock %}
+
+{% block content %}
 	
 		<div class="container">
 			<form class="form-signin span8" id="user_form" method="post" action="/gofish/register/" enctype="multipart/form-data">
@@ -34,5 +33,5 @@
 				<input class="btn btn-primary" type="submit" name="submit" value="Register"/>
 			</form>
 		</div>
-	</div>
+		
 {% endblock %}

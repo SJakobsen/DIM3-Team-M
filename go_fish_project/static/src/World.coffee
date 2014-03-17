@@ -79,9 +79,9 @@ class World
         return {x: xx, y: yy}
         
 
-    worldClicked: (event) ->
-        x = event.offsetX
-        y = event.offsetY
+    worldClicked: (e) ->
+        x = (e.offsetX || e.pageX - $(e.target).offset().left)
+        y = (e.offsetY || e.pageY - $(e.target).offset().top)
         indices = @getIndicesByCoords x, y
         @tileClicked indices.x, indices.y
 
