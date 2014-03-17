@@ -56,9 +56,16 @@
 	<div class="container-fluid">
 	    <div class="row-fluid">
 	        <div class="span3">
-	            <div class="well sidebar-nav">
-	                <!--- Empty for the timebeing -->
-	            </div>
+				<div class="well sidebar-nav">
+				   {% block sidebar %}
+				   {% endblock %}
+				   <div id="cats">
+				       {% if inventory %}
+				           <ul class="nav nav-list"><li>Inventory</li></ul>
+				           {% include 'gofish/inventory.html' with inventory=inventory %}
+				       {% endif %}
+				    </div>
+				</div>
 	            <!--/.well -->
 	        </div>
 	        <!--/span-->
