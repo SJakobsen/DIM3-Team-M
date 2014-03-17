@@ -40,6 +40,15 @@ canvas {
 	font-weight: bold;
 }
 
+.navbar-inner > .container {
+	line-height: 50px;
+}
+.navbar-inner > .container > .nav-collapse {
+	margin-top: 17px;
+}
+body > .container-fluid {
+	margin-top: 30px;
+}
 #team-m-logo {
-	height: 100px;
+	height: 50px;
 }
