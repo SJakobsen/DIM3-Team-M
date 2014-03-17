@@ -1,5 +1,5 @@
 {% extends 'gofish/base.html' %}
-
+{% load customtags %}
 <!-- HOW I PLANNED TO NOTIFY USER OF A FAILED TRANSACTION
 
 {% if fail_message %}
@@ -64,13 +64,13 @@
 		<table style="width:300px">
 		<tr>
           <th style="min-width:5em">&nbsp;</th>
-		  <th>Bait</th>
+		  <th style="min-width:15em">Bait</th>
 		  <th>Price</th> 
 		</tr>
 			{% for b in bait %}
 			<tr>
             <td><img src="/static/img/baits/{{ b.name }}.gif" alt="{{b.name}}" /></td>
-			<td>{{ b.name }}</td>
+			<td>{{ b.name|replaceUWS }}</td>
 			<td>{{ b.price }}</td>
 			<td>
 			<form id="buy_form" method="post" action="/gofish/buy/bait/{{ b.name }}/">
