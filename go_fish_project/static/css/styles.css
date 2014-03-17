@@ -1,0 +1,23 @@
+th,td
+{
+padding:5px;
+}
+
+th
+{
+text-align:left;
+}
+
+/* not a shop */
+#message ul, .hero-unit .row {
+	margin-left: 0;
+}
+#message li img {
+	width: 100%;
+}
+#time {
+	font-weight: bold;
+}
+canvas {
+	cursor: pointer;
+}

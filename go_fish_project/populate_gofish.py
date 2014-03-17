@@ -61,76 +61,70 @@ def populate():
         add_fish(fish[f])
 
     #populate_boat-----------------------------------------------------------
-    add_boat('wooden_boat',10, 20)
-    add_boat('jon_boat',15, 100)
-    add_boat('bay_fishing_boat',20,200)
-    add_boat('flats_boat',30,1000)
-    add_boat('offshore_fishing_boat',40,2000)
-    add_boat('center_console_boat',50,4000)
-    add_boat('walkaround_boat',60,4500)
-    add_boat('fish_and_ski_boat',90,6000)
-    add_boat('big_boat',150,10000)
-    add_boat('kiel_nc_105',300,20000)
+    
+    wooden_boat = add_boat('wooden_boat',10, 20)
+    jon_boat = add_boat('jon_boat',15, 100)
+    bay_fishing_boat = add_boat('bay_fishing_boat',20,200)
+    flats_boat = add_boat('flats_boat',30,1000)
+    offshore_fishing_boat = add_boat('offshore_fishing_boat',40,2000)
+    center_console_boat = add_boat('center_console_boat',50,4000)
+    walkaround_boat = add_boat('walkaround_boat',60,4500)
+    fish_and_ski_boat = add_boat('fish_and_ski_boat',90,6000)
+    big_boat = add_boat('big_boat',150,10000)
+    kiel_nc_105 = add_boat('kiel_nc_105',300,20000)
+    
+    #populate_bait-----------------------------------------------------------
+    
+    Small_white_rotex_spinner = add_bait( 'Small_white_rotex_spinner', 0, 0, 2000 )
+    Small_red_rotex_spinner = add_bait( 'Small_red_rotex_spinner', 1, 0, 2000 )
+    Medium_white_rotex_spinner = add_bait( 'Medium_white_rotex_spinner', 0, 1, 2500 )
+    Medium_yellow_rotex_spinner = add_bait( 'Medium_yellow_rotex_spinner',1,0,2500 )
+    Silver_spoon = add_bait('Silver_spoon', 0, 2, 1500 )
+    Bronze_spoon = add_bait( 'Bronze_spoon', 1, 2, 1500 )
+    Redhead_wobbler = add_bait( 'Redhead_wobbler', 0, 2, 3000 )
+    Tiger_wobbler = add_bait( 'Tiger_wobbler',  1, 2, 3000 )
+    Massive_green_wobbler = add_bait( 'Massive_green_wobbler', 0, 3, 10000 )
+    Blue_lure = add_bait( 'Blue_lure', 0, 2, 1000 )
+    Yellow_lure = add_bait( 'Yellow_lure', 1, 2, 1000 )
+    Small_red_lure = add_bait( 'Small_red_lure', 1, 0, 500 )
+    Small_green_lure = add_bait( 'Small_green_lure', 0, 0, 500 )
+    
+    #populate_user-----------------------------------------------------------
+    
+    u1 = add_user("Adam", "Adam")
+    u2 = add_user("Mary", "Mary")
+    u3 = add_user("Jake", "Jake")
+    u4 = add_user("Penelope", "Penelope")
+    u5 = add_user("Conrade", "Conrade")
     
     #populate_player---------------------------------------------------------
-#    a = add_player(0,100)
-#    b = add_player(0,100)
-#    c = add_player(0,100)
-#    d = add_player(0,100)
-#    e = add_player(0,100)
+    
+    p1 = add_player(u1, 250, wooden_boat, Small_green_lure)
+    p2 = add_player(u2, 3750, offshore_fishing_boat, Small_red_rotex_spinner)
+    p3 = add_player(u3, 25000, center_console_boat, Yellow_lure)
+    p4 = add_player(u4, 750, bay_fishing_boat, Tiger_wobbler)
+    p5 = add_player(u5, 32890, fish_and_ski_boat, Silver_spoon)
+    
+    #give_players_bait------------------------------------------------------
+    
+    add_ownsbait(p1, Small_green_lure, 1)
+    add_ownsbait(p2, Small_red_rotex_spinner, 1)
+    add_ownsbait(p2, Massive_green_wobbler, 2)
+    add_ownsbait(p3, Yellow_lure, 3)
+    add_ownsbait(p3, Bronze_spoon, 5)
+    add_ownsbait(p3, Tiger_wobbler, 2)
+    add_ownsbait(p4, Tiger_wobbler, 1)
+    add_ownsbait(p5, Silver_spoon, 5)
+    add_ownsbait(p5, Bronze_spoon, 5)
 
-    #populate_game---------------------------------------------------------
+    #populate_game----------------------------------------------------------
+    
 #    add_game('pond','sunny',a)
 #    add_game('island','cloudy',b)
 #    add_game('waterfall','hurricane',c)
 #    add_game('river','thunderstorm',d)
 #    add_game('ocean','snow',e)
 
-    #populate_bait---------------------------------------------------------
-    baits = {
-        'Small white rotex spinner': {
-            'name': 'Small_white_rotex_spinner', 'colour': 0, 'size': 0, 'price': 2000
-        },
-        'Small red rotex spinner': {
-            'name': 'Small_red_rotex_spinner', 'colour': 1, 'size': 0, 'price': 2000
-        },
-        'Medium white rotex spinner': {
-            'name': 'Medium_white_rotex_spinner', 'colour': 0, 'size': 1, 'price': 2500
-        },
-        'Medium yellow rotex spinner': {
-            'name': 'Medium_yellow_rotex_spinner', 'colour': 1, 'size': 0, 'price': 2500
-        },
-        'Silver spoon': {
-            'name': 'Silver_spoon', 'colour': 0, 'size': 2, 'price': 1500
-        },
-        'Bronze spoon': {
-            'name': 'Bronze_spoon', 'colour': 1, 'size': 2, 'price': 1500
-        },
-        'Redhead wobbler': {
-            'name': 'Redhead_wobbler', 'colour': 0, 'size': 2, 'price': 3000
-        },
-        'Tiger wobbler': {
-            'name': 'Tiger_wobbler', 'colour': 1, 'size': 2, 'price': 3000
-        },
-        'Massive green wobbler': {
-            'name': 'Massive_green_wobbler', 'colour': 0, 'size': 3, 'price': 10000
-        },
-        'Blue lure': {
-            'name': 'Blue_lure', 'colour': 0, 'size': 2, 'price': 1000
-        },
-        'Yellow lure': {
-            'name': 'Yellow_lure', 'colour': 1, 'size': 2, 'price': 1000
-        },
-        'Small red lure': {
-            'name': 'Small_red_lure', 'colour': 1, 'size': 0, 'price': 500
-        },
-        'Small green lure': {
-            'name': 'Small_green_lure', 'colour': 0, 'size': 0, 'price': 500
-        }
-    }
-
-    for b in baits:
-        add_bait(baits[b])
 
     #show all the fish**********
     print "----------------------------------------"
@@ -203,35 +197,33 @@ def add_fish(fh):
         p_wind=fh['p_wind']
     )[0]
     return f
+    
+def add_user(username, password):
+    u = User.objects.get_or_create(username=username, password=password)[0]
+    return u
 
-def add_game(lakein,weatherin,playerin):
-    g = Game.objects.get_or_create(lake=lakein,weather=weatherin,player=playerin)
+def add_game(lakein, weatherin, playerin, timein, xin, yin, attemptin):
+    g = Game.objects.get_or_create(lake=lakein,weather=weatherin,  player=playerin, time=timein, x=xin, y=yin, attempt=attemptin)[0]
     return g
 
-def add_caughtfish(fishin,gamein,amountin):
-    cf = CaughtFish.objects.get_or_create(fish=fishin,game=gamein,amount=amountin)
+def add_caughtfish(fishin, gamein, sizein, weightin, pricein):
+    cf = CaughtFish.objects.get_or_create(fish=fishin, game=gamein, size=sizein, weight=weightin, price=pricein)[0]
     return cf
 
-def add_bait(h):
-    b = Bait.objects.get_or_create(
-        name=h['name'],
-        colour=h['colour'],
-        size=h['size'],
-        price=h['price']
-    )[0]
+def add_bait(namein, colourin, sizein, pricein):
+    b = Bait.objects.get_or_create(name=namein, colour=colourin, size=sizein, price=pricein)[0]
     return b
 
 def add_boat(namein,speedin,pricein):
     b = Boat.objects.get_or_create(name=namein,speed=speedin,price=pricein)[0]
     return b
 
-
-def add_player(rankingin,moneyin):
-    p = Player.objects.get_or_create(ranking=rankingin,money=moneyin)[0]
+def add_player(userin, moneyin, boatin, baitin):
+    p = Player.objects.get_or_create(user=userin, money=moneyin, boat=boatin, bait=baitin)[0]
     return p
 
-def add_trophy(namein,fishin,playerin=None):
-    t = Trophy.objects.get_or_create(name=namein,fish=fishin,player=playerin)
+def add_trophy(fishin, sizein, weightin, pricein, playerin):
+    t = Trophy.objects.get_or_create(fish=fishin, size=sizein, weight=weightin, price=pricein, player=playerin)[0]
     return t
 
 def add_ownsbait(playerin,baitin,amountin):
@@ -243,4 +235,5 @@ if __name__ == '__main__':
     print "Starting Gofish population script..."
     os.environ.setdefault('DJANGO_SETTINGS_MODULE','go_fish_project.settings')
     from gofish.models import Fish, Game, CaughtFish, Bait, Boat, Player, Trophy, OwnsBait
+    from django.contrib.auth.models import User
     populate()

@@ -219,7 +219,7 @@ def buy_boat(request, name):
         
     return shop_return(request, failed)
 
-@login_required    
+@login_required 
 def buy_bait(request, name):
     context = RequestContext(request)
     
@@ -253,6 +253,7 @@ def buy_bait(request, name):
 
 ### API calls, return json ###
 @csrf_exempt
+@login_required
 def newgame(request):
     res = { 'error': 'bad request' }
     try:
@@ -295,6 +296,7 @@ def newgame(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
+@login_required
 def move(request):
     res = { 'currentTime': 0, 'status': 'uncool' }
 
@@ -319,6 +321,7 @@ def move(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
+@login_required
 def fish(request):
     pl = Player.objects.get(user=request.user)
     game = Game.objects.get(player=pl)
@@ -360,10 +363,13 @@ def fish(request):
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 def changebait(request):
+    pl = Player.objects.get(user=request.user)
+    
     res = {}
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
+@login_required
 def finish(request):
     pl = Player.objects.get(user=request.user)
     game = Game.objects.get(player=pl)
