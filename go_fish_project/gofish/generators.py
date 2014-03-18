@@ -81,7 +81,7 @@ def perceivedDepth(hour, depth):
     0 1 2 3 4  5  6  7  8  9  10 11
     0 1 2 3 4  5  6  5  4  3  2  1
     '''
-    absHour = hour -6;
+    absHour = hour
     if absHour > 6:
         absHour = absHour - (absHour - 6)
     modDepth = depth - absHour/2

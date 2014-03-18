@@ -5,7 +5,13 @@ class Boat
     nextX = 0;
     nextY = 0;
 
+    boatImage = new Image();
+    boatImage.onload = () ->
+        world.drawBoat()
+
     constructor: (x, y) ->
+        boatImage.src = "/static/img/boats/boat.gif"
+
         currentX = x
         currentY = y
 
@@ -36,3 +42,6 @@ class Boat
     applyNextCoordinates: () ->
         currentX = nextX
         currentY = nextY
+
+    getBoatImage: () ->
+        return boatImage

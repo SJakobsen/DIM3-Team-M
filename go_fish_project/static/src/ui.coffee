@@ -28,6 +28,18 @@ showFishingResults = (result) ->
 	else
 		res = "<p>Sorry, no fish was caught :(</p>"
 
+	if result.fish.length > 0
+		str = ""
+		for x in result.fish
+			str += "<li class='new'>#{getFishImage(x.fish).outerHTML}"
+			str += "#{x.fish}: #{x.weight}&nbsp;kg, +#{x.price}&nbsp;monies"
+			str += "</li>"
+
+		$(".new").removeClass("new");
+		$("#current-catches ul").prepend(str)
+
+
+
 	showMessage res
 
 showMoveResult = (result) ->
@@ -46,6 +58,9 @@ updateTime = (time)	->
 
 updateWeather = (weather, time) ->
 	$('#weather').html getWeatherString(weather, time)
+
+updateMoney = (money) ->
+	$('#money').html money
 
 showGameResults = (data) ->
 	el = $("#game-result")

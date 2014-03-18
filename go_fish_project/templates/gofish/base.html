@@ -30,6 +30,7 @@
 	               <span class="icon-bar"></span>
 	               <span class="icon-bar"></span>
 	           </button>
+	           <img id="team-m-logo" class="brand" src="{% static 'img/boats/team-m.gif' %}">
 	           <a class="brand" href="/gofish/">Go!Fish</a>
 
 	           <div class="nav-collapse collapse">
@@ -59,10 +60,8 @@
 	    <div class="row-fluid">
 	        <div class="span3">
 				<div class="well sidebar-nav">
-				   {% block sidebar %}
-				   {% endblock %}
 				   {% if player %}
-				   		<p> Money: {{ player.money }} <p>
+				   		<p> Money: <span id="money">{{ player.money }}</span><p>
 				   {% endif %}
 				   <div id="cats">
 				       {% if inventory %}
@@ -72,7 +71,17 @@
 				    </div>
 				</div>
 	            <!--/.well -->
+
+				<div class="well sidebar-nav" id="current-catches">
+					<h3>Current catch</h3>
+					<ul>
+					</ul>
+				</div>	            
 	        </div>
+
+		   {% block sidebar %}
+		   {% endblock %}
+
 	        <!--/span-->
 	        <div class="span9">
 	            {% block body_block %}

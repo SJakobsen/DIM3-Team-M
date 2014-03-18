@@ -4,6 +4,7 @@ origin = location.origin + "/gofish/api/"
 newgameCallback = (data) ->
 	$("#message").empty()
 	hideGameResults()
+	$("#current-catches ul").empty()
 
 	lakeArray = data.lake
 	lake = new Lake lakeArray
@@ -14,6 +15,7 @@ newgameCallback = (data) ->
 
 	updateTime data.currentTime
 	updateWeather world.getWeather(), data.currentTime
+	updateMoney data.money
 
 moveCallback = (data) ->
 	status = data.status

@@ -15,7 +15,7 @@ text-align:left;
 #message li img, #game-result li img{
 	width: 100%;
 }
-#time {
+#time, #money {
 	font-weight: bold;
 }
 canvas {
@@ -24,4 +24,31 @@ canvas {
 
 #game-result {
 	display: none;
+}
+
+#current-catches ul {
+	list-style-type: none;
+	margin-left: 5px;
+}
+
+#current-catches img {
+	width: 64px;
+	margin-right: 5px;
+}
+
+#current-catches .new {
+	font-weight: bold;
+}
+
+.navbar-inner > .container {
+	line-height: 50px;
+}
+.navbar-inner > .container > .nav-collapse {
+	margin-top: 17px;
+}
+body > .container-fluid {
+	margin-top: 30px;
+}
+#team-m-logo {
+	height: 50px;
 }
